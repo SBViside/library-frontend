@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap");
 @import "variables";
+@import "./UI.scss";
 
 * {
   margin: 0;
@@ -10,6 +11,7 @@
   list-style: none;
   font-size: 16px;
   word-wrap: break-word;
+  text-decoration: none;
 }
 
 .container {
@@ -81,11 +83,11 @@
           display: flex;
 
           .nav__item {
-            padding: 40px 0;
             cursor: pointer;
             position: relative;
 
             .nav__text {
+              padding: 40px 0;
               margin: 0 30px;
               text-align: center;
               font-weight: 600;
@@ -135,7 +137,7 @@
     }
     .footer__end {
       margin-top: 30px;
-      border-top: 3px solid $gray;
+      border-top: 1px solid $gray;
       text-align: center;
       padding-top: 30px;
       font-weight: 700;
@@ -164,8 +166,8 @@
     transition: all 0.2s ease-out;
 
     .nav__item {
-      padding: 30px 0 !important;
       .nav__text {
+        padding: 30px 0 !important;
         font-size: 24px;
         font-weight: 700 !important;
       }
@@ -176,5 +178,17 @@
   }
   .footer__contacts {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .header__left {
+    gap: 10px !important;
+    .header__text {
+      font-size: 30px !important;
+    }
+    .header__logo {
+      width: 50px !important;
+    }
   }
 }

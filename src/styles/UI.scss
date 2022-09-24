@@ -1,0 +1,28 @@
+::selection {
+  background-color: $orange;
+  color: $dark;
+}
+::-moz-selection {
+  background-color: $orange;
+  color: $dark;
+}
+
+// scrollbar
+// scrollbar
+// scrollbar
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: $dark;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: $orange;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $darkorange;
+}

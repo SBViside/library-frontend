@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
@@ -32,9 +33,11 @@ function Header({ headerNavigator }) {
           <nav className="header__nav">
             <ul className={burger ? "nav__list burger__show" : "nav__list"}>
               {headerNavigator.map((n) => (
-                <li className="nav__item" key={n.id} onClick={n.click}>
-                  <p className="nav__text">{n.text}</p>
-                  <div className="nav__underline"></div>
+                <li className="nav__item" key={n.id}>
+                  <Link to={n.link}>
+                    <p className="nav__text">{n.text}</p>
+                    <div className="nav__underline"></div>
+                  </Link>
                 </li>
               ))}
             </ul>

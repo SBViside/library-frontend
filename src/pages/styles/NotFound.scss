@@ -1,0 +1,34 @@
+@import "../../styles/variables";
+
+.notFound {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .picture {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    svg {
+      fill: $dark;
+      width: 220px;
+      height: 200px;
+    }
+    p {
+      color: $dark;
+      font-size: 100px;
+      font-weight: 800;
+    }
+  }
+  & > p {
+    font-size: 30px;
+    color: $dark;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+@media (max-width: 960px) {
+  .picture {
+    flex-direction: column;
+    gap: 0px !important;
+  }
+}
