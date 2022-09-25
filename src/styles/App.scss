@@ -113,12 +113,14 @@
       }
 
       .burger {
-        width: 40px;
-        height: 40px;
-        fill: $white;
-        display: none;
-        position: relative;
-        z-index: 1000;
+        svg {
+          width: 40px;
+          height: 40px;
+          fill: $white;
+          display: none;
+          position: relative;
+          z-index: 1000;
+        }
       }
     }
   }
@@ -152,7 +154,9 @@
 
 @media (max-width: 960px) {
   .burger {
-    display: block !important;
+    svg {
+      display: block !important;
+    }
   }
   .nav__list {
     padding-top: 102px;

@@ -10,25 +10,17 @@ function Header({ headerNavigator }) {
   return (
     <header className="header">
       <div className="header__content container">
-        <div className="header__left">
+        <Link className="header__left" to="/books">
           <img src={logo} alt="ERROR" className="header__logo" />
           <div className="header__text">
             BOOKS
             <div className="logo__underline"></div>
           </div>
-        </div>
+        </Link>
         <div className="header__right">
-          {burger ? (
-            <MdOutlineClose
-              className="burger"
-              onClick={() => setBurger(!burger)}
-            />
-          ) : (
-            <AiOutlineMenu
-              className="burger"
-              onClick={() => setBurger(!burger)}
-            />
-          )}
+          <div className="burger" onClick={() => setBurger(!burger)}>
+            {burger ? <MdOutlineClose /> : <AiOutlineMenu />}
+          </div>
 
           <nav className="header__nav">
             <ul className={burger ? "nav__list burger__show" : "nav__list"}>
