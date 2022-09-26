@@ -1,4 +1,3 @@
-import "./styles/NotFound.scss";
 import { GiArchiveResearch } from "react-icons/gi";
 
 function NotFound(props) {

@@ -1,8 +1,6 @@
-@import "../../styles/variables";
-
 .notFound {
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
   .picture {
     display: flex;
     align-items: center;
