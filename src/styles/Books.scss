@@ -58,8 +58,42 @@
             color: $dark;
           }
           .bookItem__author {
+            margin-bottom: 10px;
             color: $gray;
             font-size: 14px;
+          }
+          .bookItem__avalible {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: rgb(20, 194, 20);
+          }
+          .bookItem__description {
+            padding: 5px;
+            margin-bottom: 10px;
+            color: $lightgray;
+            max-height: 80px;
+            overflow: hidden;
+            user-select: none;
+            text-align: justify;
+
+            // FROM THE WEB
+            // FROM THE WEB
+            // FROM THE WEB
+            background: -webkit-gradient(
+              linear,
+              left top,
+              left bottom,
+              from(#000),
+              to(rgba(0, 0, 0, 0))
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            // FROM THE WEB
+            // FROM THE WEB
+            // FROM THE WEB
           }
         }
 
@@ -118,13 +152,17 @@
     }
 
     .bookItem__info {
+      & > * {
+        text-align: center;
+      }
       .bookItem__name {
         font-size: 24px !important;
-        text-align: center;
       }
       .bookItem__author {
         font-size: 16px !important;
-        text-align: center;
+      }
+      .bookItem__avalible {
+        justify-content: center;
       }
     }
 

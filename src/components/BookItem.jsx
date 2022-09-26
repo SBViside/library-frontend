@@ -1,4 +1,5 @@
 import Button from "./UI/button/Button";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 function BookItem({ book, ...props }) {
   return (
@@ -9,7 +10,14 @@ function BookItem({ book, ...props }) {
       ></div>
       <div className="bookItem__info">
         <h2 className="bookItem__name">{book.name}</h2>
-        <h3 className="bookItem__author">{book.author}</h3>
+        <h3 className="bookItem__author">
+          {book.author} / {book.release_year}
+        </h3>
+        <h3 className="bookItem__avalible">
+          <AiOutlineCheckCircle />
+          Доступно: {book.avalible_amount}
+        </h3>
+        <div className="bookItem__description">{book.description}</div>
       </div>
       <div className="bookItem__buttons">
         <Button>Оформить</Button>
