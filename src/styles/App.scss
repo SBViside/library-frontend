@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap");
 @import "variables";
 @import "./UI.scss";
+@import "./Browser.scss";
 @import "./NotFound.scss";
 @import "./Books.scss";
 
@@ -26,9 +27,12 @@
   font-size: 40px;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .App {
   min-height: 100vh;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,8 +40,11 @@
 }
 
 .header {
+  position: sticky;
+  top: 0;
   width: 100vw;
   background-color: $dark;
+  z-index: 100;
 
   .header__content {
     display: flex;
@@ -87,6 +94,7 @@
       .header__nav {
         .nav__list {
           display: flex;
+          z-index: 100;
 
           .nav__item {
             cursor: pointer;

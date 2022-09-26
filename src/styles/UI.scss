@@ -1,28 +1,19 @@
-::selection {
-  background-color: $orange;
+.styledButton {
+  padding: 10px 20px;
   color: $dark;
-}
-::-moz-selection {
-  background-color: $orange;
-  color: $dark;
-}
+  font-weight: 700;
+  font-size: 14px;
+  background-color: $white;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.15s ease-out;
 
-// scrollbar
-// scrollbar
-// scrollbar
-::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: $dark;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background: $orange;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: $darkorange;
+  &:hover {
+    box-shadow: 0 1px 4px $orange, -23px 0 20px -23px $orange,
+      23px 0 20px -23px $orange, 0 0 40px $orange inset;
+  }
+  &:active {
+    box-shadow: 0 1px 4px $darkorange, -23px 0 20px -23px $darkorange,
+      23px 0 20px -23px $darkorange, 0 0 40px $darkorange inset;
+  }
 }

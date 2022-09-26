@@ -26,7 +26,7 @@ function Header({ headerNavigator }) {
             <ul className={burger ? "nav__list burger__show" : "nav__list"}>
               {headerNavigator.map((n) => (
                 <li className="nav__item" key={n.id}>
-                  <Link to={n.link}>
+                  <Link to={n.link} onClick={() => setBurger(false)}>
                     <p className="nav__text">{n.text}</p>
                     <div className="nav__underline"></div>
                   </Link>
