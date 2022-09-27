@@ -1,19 +1,20 @@
 .books {
+  min-height: 500px;
   width: 100%;
   padding-bottom: 30px !important;
   background-color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
 
   .books__content {
+    display: flex;
     .books__filter {
-      position: sticky;
-      top: 120px;
       padding: 10px;
-      float: left;
-      width: 220px;
+      min-width: 230px;
       margin-right: 40px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
       background-color: white;
+      height: 400px;
       min-height: 400px;
 
       h2 {
