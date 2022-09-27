@@ -13,15 +13,25 @@ function BookItem({ book, ...props }) {
         <h3 className="bookItem__author">
           {book.author} / {book.release_year}
         </h3>
-        <h3 className="bookItem__avalible">
-          <AiOutlineCheckCircle />
-          Доступно: {book.avalible_amount}
+        <h3
+          className={
+            "bookItem__avalible " + (book.avalible_amount ? "green" : "gray")
+          }
+        >
+          {book.avalible_amount ? (
+            <>
+              <AiOutlineCheckCircle />
+              Доступно: {book.avalible_amount}
+            </>
+          ) : (
+            `Нет в наличии`
+          )}
         </h3>
         <div className="bookItem__description">{book.description}</div>
       </div>
       <div className="bookItem__buttons">
         <Button>Оформить</Button>
-        <Button>Подробно</Button>
+        <Button>Подробнее</Button>
       </div>
       <div className="book__underline"></div>
     </div>
