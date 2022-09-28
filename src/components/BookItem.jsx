@@ -9,7 +9,7 @@ function BookItem({ book, ...props }) {
         style={{ backgroundImage: `url('${book.url}')` }}
       ></div>
       <div className="bookItem__info">
-        <h2 className="bookItem__name">{book.name}</h2>
+        <h2 className="bookItem__title">{book.title}</h2>
         <h3 className="bookItem__author">
           {book.author} / {book.release_year}
         </h3>

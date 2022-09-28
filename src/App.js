@@ -2,28 +2,22 @@ import './styles/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+// PAGES
 import NotFound from './pages/NotFound';
 import Books from './pages/Books';
 import Authors from './pages/Authors';
 import Profile from './pages/Profile';
 import About from './pages/About';
+import Admin from './pages/Admin';
+
 
 function App() {
-
-    const headerNavigator = [
-        { id: 1, text: "Профиль", link: "/profile" },
-        { id: 2, text: "Книги", link: "/books" },
-        { id: 3, text: "Авторы", link: "/authors" },
-        { id: 4, text: "Информация", link: "/about" },
-    ];
-
     return (
         <div className="App">
 
             <BrowserRouter>
 
-                <Header headerNavigator={headerNavigator} />
+                <Header />
 
                 <Routes>
                     <Route path="/" element={<Navigate to="/about" />} />
@@ -32,6 +26,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/404" element={<NotFound />} />
+                    <Route path="/admin" element={<Admin />} />
 
                     <Route path="*" element={<Navigate to="/404" />} />
                 </Routes>
