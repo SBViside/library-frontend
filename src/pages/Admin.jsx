@@ -12,41 +12,49 @@ function Admin() {
 
   const [tablesLoading, getTables, tablesError] = useFetch(async () => {
     const response = await axios.get("/db/tables");
-    setTables(response.data);
+    const data = response.data;
+    setTables(data);
+    setCurrentTableName(data[0].table_name);
   });
 
   const [currentTableLoading, getCurrentTable, currentTableError] = useFetch(
     async () => {
-      await getTables();
-      setCurrentTableName(tables[0].table_name);
-      console.log(tables[0].table_name);
       const response = await axios.get(`/db/tables/${currentTableName}`);
       setCurrentTable(response.data);
     }
   );
 
   useEffect(() => {
-    getCurrentTable();
+    getTables();
   }, []);
+
+  useEffect(() => {
+    getCurrentTable();
+  }, [tables, currentTableName]);
 
   return (
     <div className="admin container">
       {verification ? (
         <>
-          <h1 className="caption">Редактирование контента</h1>
+          <h1 className="caption">Редактор базы данных</h1>
           <div className="admin__content">
             <div className="admin__tabs">
-              {tables.map((t) => (
-                <div key={t.table_name} className="admin__tab">
-                  <input
-                    type="radio"
-                    name="table"
-                    id={t.table_name}
-                    onChange={(e) => setCurrentTableName(e.target.id)}
-                  />
-                  <label htmlFor={t.table_name}>{t.table_name}</label>
-                </div>
-              ))}
+              {tablesLoading ? (
+                <h2>Загрузка таблиц...</h2>
+              ) : (
+                tables.map((t) => (
+                  <div key={t.table_name} className="admin__tab">
+                    <input
+                      type="radio"
+                      name="table"
+                      id={t.table_name}
+                      checked={currentTableName === t.table_name}
+                      onChange={(e) => setCurrentTableName(e.target.id)}
+                    />
+                    <label htmlFor={t.table_name}>{t.table_name}</label>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </>

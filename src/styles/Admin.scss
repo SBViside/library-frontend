@@ -1,9 +1,44 @@
+@import "./variables";
+
 .admin {
   min-height: 600px;
   width: 100%;
   background-color: white;
-  .caption {
-    text-align: center;
-    font-size: 24px;
+  .admin__content {
+    user-select: none;
+    .admin__tabs {
+      padding: 20px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+      background-color: antiquewhite;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .admin__tab {
+        margin-bottom: 10px;
+        input {
+          display: none;
+          &:checked + label {
+            background-color: $darkorange;
+            color: $lightgray;
+          }
+        }
+        label {
+          font-weight: 700;
+          padding: 10px 20px;
+          border-radius: 10px;
+          background-color: $orange;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .admin__tabs {
+    flex-direction: column;
   }
 }
