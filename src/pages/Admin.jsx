@@ -6,31 +6,41 @@ import axios from "axios";
 function Admin() {
   const [verification, setVerification] = useState(true);
 
-  const [tables, setTables] = useState([]);
-  const [currentTableName, setCurrentTableName] = useState("");
-  const [currentTable, setCurrentTable] = useState([]);
+  const [tables, setTables] = useState([
+    { id: 1, name: "заказы" },
+    { id: 2, name: "книги" },
+    { id: 3, name: "авторы" },
+    { id: 4, name: "жанры" },
+    { id: 5, name: "пользователи" },
+  ]);
+  const [index, setIndex] = useState(tables[0].id);
+  const [database, setDatabase] = useState([]);
 
-  const [tablesLoading, getTables, tablesError] = useFetch(async () => {
-    const response = await axios.get("/db/tables");
-    const data = response.data;
-    setTables(data);
-    setCurrentTableName(data[0].table_name);
-  });
+  //   const [tables, setTables] = useState([]);
+  //   const [currentTableName, setCurrentTableName] = useState("");
+  //   const [currentTable, setCurrentTable] = useState([]);
 
-  const [currentTableLoading, getCurrentTable, currentTableError] = useFetch(
-    async () => {
-      const response = await axios.get(`/db/tables/${currentTableName}`);
-      setCurrentTable(response.data);
-    }
-  );
+  //   const [tablesLoading, getTables, tablesError] = useFetch(async () => {
+  //     const response = await axios.get("/db/tables");
+  //     const data = response.data;
+  //     setTables(data);
+  //     setCurrentTableName(data[0].table_name);
+  //   });
 
-  useEffect(() => {
-    getTables();
-  }, []);
+  //   const [currentTableLoading, getCurrentTable, currentTableError] = useFetch(
+  //     async () => {
+  //       const response = await axios.get(`/db/tables/${currentTableName}`);
+  //       setCurrentTable(response.data);
+  //     }
+  //   );
 
-  useEffect(() => {
-    getCurrentTable();
-  }, [tables, currentTableName]);
+  //   useEffect(() => {
+  //     getTables();
+  //   }, []);
+
+  //   useEffect(() => {
+  //     getCurrentTable();
+  //   }, [tables, currentTableName]);
 
   return (
     <div className="admin container">
@@ -39,22 +49,18 @@ function Admin() {
           <h1 className="caption">Редактор базы данных</h1>
           <div className="admin__content">
             <div className="admin__tabs">
-              {tablesLoading ? (
-                <h2>Загрузка таблиц...</h2>
-              ) : (
-                tables.map((t) => (
-                  <div key={t.table_name} className="admin__tab">
-                    <input
-                      type="radio"
-                      name="table"
-                      id={t.table_name}
-                      checked={currentTableName === t.table_name}
-                      onChange={(e) => setCurrentTableName(e.target.id)}
-                    />
-                    <label htmlFor={t.table_name}>{t.table_name}</label>
-                  </div>
-                ))
-              )}
+              {tables.map((t) => (
+                <div key={t.id} className="admin__tab">
+                  <input
+                    type="radio"
+                    name="table"
+                    id={t.name}
+                    checked={t.id === index}
+                    onChange={(e) => setIndex(t.id)}
+                  />
+                  <label htmlFor={t.name}>{t.name}</label>
+                </div>
+              ))}
             </div>
           </div>
         </>
