@@ -3,20 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdOutlineClose } from "react-icons/md";
-// PICTURES
-import { CgProfile } from "react-icons/cg";
-import { ImBooks } from "react-icons/im";
-import { FaPencilAlt } from "react-icons/fa";
-import { BiInfoCircle } from "react-icons/bi";
 
-function Header() {
-  const headerNavigator = [
-    { id: 1, text: "Профиль", link: "/profile", icon: CgProfile },
-    { id: 2, text: "Книги", link: "/books", icon: ImBooks },
-    { id: 3, text: "Авторы", link: "/authors", icon: FaPencilAlt },
-    { id: 4, text: "О нас", link: "/about", icon: BiInfoCircle },
-  ];
-
+function Header({ headerNavigator }) {
   const [burger, setBurger] = useState(false);
 
   return (
@@ -37,7 +25,7 @@ function Header() {
           <nav className="header__nav">
             <ul className={burger ? "nav__list burger__show" : "nav__list"}>
               {headerNavigator.map((n) => (
-                <li className="nav__item" key={n.id}>
+                <li className="nav__item" key={n.link}>
                   <Link
                     className="nav__link"
                     to={n.link}

@@ -2,40 +2,46 @@ import './styles/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-// PAGES
-import NotFound from './pages/NotFound';
-import Books from './pages/Books';
-import Authors from './pages/Authors';
-import Profile from './pages/Profile';
-import About from './pages/About';
-import Admin from './pages/Admin';
-
+import { useState } from 'react';
+// ROUTES
+import { publicRoutes, privateRoutes, adminRoutes } from './routes/routes';
+import { publicNavigator, privateNavigator, adminNavigator } from './routes/headerRoutes';
+// CONTEXT
+import { loginContext } from './context/loginContext';
 
 function App() {
+    // login check
+    const [logined, setLogined] = useState(localStorage.getItem('user') || { email: null, admin: false });
+    const routes = logined.email ? (logined.admin ? [...privateRoutes, ...adminRoutes] : privateRoutes) : publicRoutes;
+    const headerNavigator = logined.email ? (logined.admin ? [...privateNavigator, ...adminNavigator] : privateNavigator) : publicNavigator;
+
     return (
-        <div className="App">
+        <loginContext.Provider value={{ logined, setLogined }}>
+            <div className="App">
 
-            <BrowserRouter>
+                <BrowserRouter>
 
-                <Header />
+                    <Header headerNavigator={headerNavigator} />
 
-                <Routes>
-                    <Route path="/" element={<Navigate to="/about" />} />
-                    <Route path="/books" element={<Books />} />
-                    <Route path="/authors" element={<Authors />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/404" element={<NotFound />} />
-                    <Route path="/admin" element={<Admin />} />
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/about" />} />
 
-                    <Route path="*" element={<Navigate to="/404" />} />
-                </Routes>
+                        {routes.map(r =>
+                            <Route key={r.path} path={r.path} element={<r.element />} exact={r.exact} />
+                        )
+                        }
 
-                <Footer />
+                        {/* <Route path="/admin" element={<Admin />} /> */}
 
-            </BrowserRouter>
+                        <Route path="*" element={<Navigate to="/404" />} />
+                    </Routes>
 
-        </div >
+                    <Footer />
+
+                </BrowserRouter>
+
+            </div >
+        </loginContext.Provider>
     );
 }
 
