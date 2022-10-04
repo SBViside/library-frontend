@@ -28,10 +28,11 @@ function Login() {
     }
 
     const user = { email: inputs.email, admin: response.data.admin };
+    // DOM
+    const remember = document.getElementById("remember").checked;
+    if (remember) localStorage.setItem("user", JSON.stringify(user));
 
-    localStorage.setItem("user", JSON.stringify(user));
     setLogined(user);
-
     navigate("/books");
   };
 

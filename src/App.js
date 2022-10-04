@@ -18,24 +18,19 @@ function App() {
     return (
         <loginContext.Provider value={{ logined, setLogined }}>
             <div className="App">
-
                 <BrowserRouter>
-
                     <Header headerNavigator={headerNavigator} />
 
                     <Routes>
                         <Route path="/" element={<Navigate to="/about" />} />
-
                         {routes.map(r =>
-                            <Route key={r.path} path={r.path} element={<r.element />} exact={r.exact} />
-                        )}
+                            <Route key={r.path} path={r.path} element={<r.element />} exact={r.exact} />)
+                        }
                         <Route path="*" element={<Navigate to="/404" />} />
                     </Routes>
 
                     <Footer />
-
                 </BrowserRouter>
-
             </div >
         </loginContext.Provider>
     );
