@@ -1,0 +1,40 @@
+@import "../../../styles/variables";
+
+.checkbox {
+  input {
+    display: none;
+
+    &:checked + label:before {
+      background-color: $orange;
+      border-radius: 2px;
+    }
+  }
+
+  label {
+    display: block;
+    padding-left: 20px;
+    user-select: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+    }
+
+    &:before {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background-color: $gray;
+      transition: all 0.2s ease-out;
+    }
+  }
+}

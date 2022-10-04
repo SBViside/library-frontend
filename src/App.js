@@ -11,7 +11,7 @@ import { loginContext } from './context/loginContext';
 
 function App() {
     // login check
-    const [logined, setLogined] = useState(localStorage.getItem('user') || { email: null, admin: false });
+    const [logined, setLogined] = useState(JSON.parse(localStorage.getItem('user')) || { email: null, admin: false });
     const routes = logined.email ? (logined.admin ? [...privateRoutes, ...adminRoutes] : privateRoutes) : publicRoutes;
     const headerNavigator = logined.email ? (logined.admin ? [...privateNavigator, ...adminNavigator] : privateNavigator) : publicNavigator;
 
@@ -28,11 +28,7 @@ function App() {
 
                         {routes.map(r =>
                             <Route key={r.path} path={r.path} element={<r.element />} exact={r.exact} />
-                        )
-                        }
-
-                        {/* <Route path="/admin" element={<Admin />} /> */}
-
+                        )}
                         <Route path="*" element={<Navigate to="/404" />} />
                     </Routes>
 

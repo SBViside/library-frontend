@@ -5,7 +5,7 @@ import Profile from '../pages/Profile';
 import About from '../pages/About';
 import Admin from '../pages/Admin';
 import Login from '../pages/Login';
-
+import Logout from '../pages/Logout';
 
 const publicRoutes = [
     { path: '/books', element: Books, exact: true },
@@ -19,6 +19,7 @@ const privateRoutes = [
     { path: '/authors', element: Authors, exact: true },
     { path: '/profile', element: Profile, exact: true },
     { path: '/about', element: About, exact: false },
+    { path: '/logout', element: Logout, exact: false },
     { path: '/404', element: NotFound, exact: false },
 ];
 const adminRoutes = [

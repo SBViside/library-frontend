@@ -114,6 +114,10 @@ body {
                 fill: $white;
                 width: 25px;
                 height: 25px;
+
+                path {
+                  stroke: $white;
+                }
               }
 
               .nav__text {
@@ -135,6 +139,9 @@ body {
               svg {
                 color: $orange;
                 fill: $orange;
+                path {
+                  stroke: $orange;
+                }
               }
               .nav__underline {
                 background-color: $orange;
@@ -188,7 +195,7 @@ body {
   opacity: 1 !important;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1000px) {
   .burger {
     svg {
       display: block !important;

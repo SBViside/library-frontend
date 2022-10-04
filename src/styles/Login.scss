@@ -4,51 +4,37 @@
 
   .caption {
     padding: 0 !important;
-    margin-bottom: 30px;
-    font-size: 30px;
+    margin-bottom: 20px;
+    font-size: 24px;
     padding: 15px 0;
-    text-align: center;
+    text-align: left;
   }
 
   .login__content {
+    width: 350px;
     display: inline-block;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: $white;
-    padding: 35px;
+    background-color: white;
+    padding: 30px;
     border-bottom: 5px solid $orange;
     border-radius: 10px;
     overflow: hidden;
 
-    .warn {
-      visibility: hidden;
-      margin-top: 10px;
-      color: red;
-      font-size: 10px;
-    }
-
     .login__inputs {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 10px;
 
       .login__input {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-
-        span {
-          font-size: 16px;
-          color: $dark;
-        }
-
+        width: 100%;
         input {
-          padding: 3px 0;
-          width: 200px;
+          padding: 7px;
+          width: 100%;
           border: none;
           border-bottom: 2px solid $gray;
           transition: all 0.2s ease-out;
@@ -56,18 +42,22 @@
           &:focus {
             outline: none;
             border-color: $orange;
+            background-color: rgba(0, 0, 0, 0.05);
           }
+        }
+        .warn {
+          visibility: hidden;
+          color: red;
+          font-size: 10px;
         }
       }
     }
-    .login__buttons {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
 
-      button:first-child {
+    .login__buttons {
+      margin-top: 15px;
+
+      #log_in {
+        width: 100%;
         background-color: $orange;
         color: $white;
       }
@@ -76,35 +66,19 @@
 }
 
 @media (max-width: 460px) {
-  .login__content {
-    width: 95%;
-    padding: 20px !important;
-    .login__input {
-      flex-direction: column;
-      span {
-        display: none;
-      }
+  .login {
+    height: 400px;
+
+    .login__content {
+      width: 100% !important;
+      padding: 20px !important;
     }
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 370px) {
   .login {
-    height: 400px;
     .caption {
       font-size: 20px;
-    }
-    .login__content {
-      .login__inputs {
-        .login__input {
-          input {
-          }
-        }
-      }
-      .login__buttons {
-        button {
-          padding: 5px !important;
-        }
-      }
     }
   }
 }

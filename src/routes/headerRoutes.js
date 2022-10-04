@@ -16,7 +16,7 @@ const privateNavigator = [
     { text: "Книги", link: "/books", icon: ImBooks },
     { text: "Авторы", link: "/authors", icon: FaPencilAlt },
     { text: "О нас", link: "/about", icon: BiInfoCircle },
-    { text: "Выход", link: "/login", icon: CgLogOut },
+    { text: "Выход", link: "/logout", icon: CgLogOut },
 ];
 const adminNavigator = [
     { text: "Админ", link: "/admin", icon: GrUserAdmin },
