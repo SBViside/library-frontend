@@ -9,7 +9,7 @@ const useFetch = (callback) => {
       setLoading(true);
       await callback();
     } catch (error) {
-      setError(error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }

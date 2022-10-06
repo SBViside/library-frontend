@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginContext } from "../context/loginContext";
 import Button from "../components/UI/button/Button";
 import Checkbox from "../components/UI/checkbox/Checkbox";
+import Input from "../components/UI/input/Input";
 import axios from "axios";
 
 function Login() {
@@ -42,7 +43,7 @@ function Login() {
         <h1 className="caption">Вход на сайт</h1>
         <div className="login__inputs">
           <div className="login__input">
-            <input
+            <Input
               id="email"
               type="text"
               placeholder="E-Mail"
@@ -51,7 +52,7 @@ function Login() {
             />
           </div>
           <div className="login__input">
-            <input
+            <Input
               id="pass"
               type="password"
               placeholder="Password"
