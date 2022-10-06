@@ -9,9 +9,8 @@
     .books__filter {
       padding: 15px;
       width: 100%;
-      margin-top: 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
+      border-radius: 0 0 5px 5px;
       background-color: white;
       min-height: 243px;
       position: relative;
@@ -24,18 +23,11 @@
           fill: $dark;
         }
       }
-      .filter__buttons {
+      #reset_filter {
         position: absolute;
         bottom: 15px;
-        right: 100px;
+        right: 15px;
         width: 150px;
-        display: flex;
-        gap: 15px;
-
-        #apply_filter {
-          background-color: $orange;
-          color: $white;
-        }
       }
 
       .filter__content {
@@ -47,7 +39,7 @@
         .filter__pages,
         .filter__years {
           display: inline-block;
-          margin-right: 40px;
+          margin-right: 60px;
         }
         .filter__counts {
           display: flex;
@@ -60,9 +52,13 @@
             width: 100px;
           }
         }
-        .filter__pages {
-        }
       }
+    }
+
+    .books__notFound {
+      margin: 30px 0;
+      font-size: 30px;
+      text-align: center;
     }
 
     .booksList {
@@ -182,7 +178,7 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1000px) {
   .books__filter {
     display: none;
   }

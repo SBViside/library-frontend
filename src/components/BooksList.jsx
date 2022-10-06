@@ -3,7 +3,7 @@ import Loader from "./UI/loader/Loader";
 
 function BooksList({ books, booksLoading }) {
   if (!booksLoading && books.length < 1) {
-    return <h1>Книг не найдено...</h1>;
+    return <h1 className="books__notFound">Книг не найдено...</h1>;
   }
 
   return booksLoading ? (
