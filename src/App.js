@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import './styles/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState } from 'react';
 // ROUTES
 import { publicRoutes, privateRoutes, adminRoutes } from './routes/routes';
 import { publicNavigator, privateNavigator, adminNavigator } from './routes/headerRoutes';

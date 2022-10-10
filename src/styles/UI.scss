@@ -17,3 +17,41 @@
       23px 0 20px -23px $darkorange, 0 0 40px $darkorange inset;
   }
 }
+
+.pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+
+  .page {
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: $lightgray;
+    font-weight: 700;
+    cursor: pointer;
+
+    &.selected {
+      background-color: $orange;
+      color: $white;
+    }
+  }
+}
+
+.range {
+  width: 300px;
+  .text {
+    // text-align: right;
+  }
+  .rc-slider {
+    .rc-slider-track {
+      background-color: $orange;
+    }
+    .rc-slider-handle {
+      background-color: $white;
+      border-color: $orange;
+    }
+  }
+}

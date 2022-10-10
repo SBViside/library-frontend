@@ -7,13 +7,48 @@
 
   .books__content {
     .books__filter {
-      padding: 15px;
-      width: 100%;
+      padding: 20px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
       border-radius: 0 0 5px 5px;
       background-color: white;
-      min-height: 243px;
-      position: relative;
+      max-height: 125px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease-out;
+      overflow: hidden;
+
+      &.opened {
+        max-height: 350px !important;
+        .filter__header {
+          button {
+            outline: 2px solid $orange;
+            svg {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+
+      .filter__header {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        button {
+          padding: 3px 7px !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: none;
+          svg {
+            fill: $gray;
+            color: $gray;
+            stroke: $gray;
+            width: 20px;
+            height: 20px;
+            transition: all 0.2s ease-out;
+          }
+        }
+      }
 
       h2 {
         font-size: 20px;
@@ -24,33 +59,21 @@
         }
       }
       #reset_filter {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
         width: 150px;
+        align-self: end;
       }
 
       .filter__content {
-        padding: 10px;
         #searchBar {
           margin-bottom: 20px;
-          background-color: rgb(245, 245, 245);
+          border-color: $orange;
+          //   border-radius: 5px;
+          border-width: 3px;
         }
-        .filter__pages,
-        .filter__years {
-          display: inline-block;
-          margin-right: 60px;
-        }
-        .filter__counts {
-          display: flex;
-          align-items: center;
+        .filter__ranges {
           margin-bottom: 20px;
-          span {
-            font-size: 30px;
-          }
-          input {
-            width: 100px;
-          }
+          display: flex;
+          gap: 60px;
         }
       }
     }
@@ -180,7 +203,10 @@
 
 @media (max-width: 1000px) {
   .books__filter {
-    display: none;
+    .filter__ranges {
+      flex-direction: column;
+      gap: 10px !important;
+    }
   }
 }
 @media (max-width: 600px) {
@@ -217,6 +243,26 @@
       left: 50% !important;
       transform: translateX(-50%);
       flex-direction: row !important;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .books__filter {
+    .filter__content {
+      .filter__ranges {
+        flex-direction: column;
+        gap: 10px !important;
+        .range {
+          width: 100%;
+          .text {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    #reset_filter {
+      margin-top: 20px;
+      width: 100% !important;
     }
   }
 }

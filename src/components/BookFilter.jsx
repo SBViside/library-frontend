@@ -1,30 +1,38 @@
+import { useState } from "react";
 import Button from "./UI/button/Button";
 import { FaFilter } from "react-icons/fa";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import Input from "./UI/input/Input";
 import Checkbox from "./UI/checkbox/Checkbox";
+import Range from "./UI/range/Range";
+import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
 
 function BookFilter({ filter, setFilter, getBooks, ...props }) {
+  const [opened, setOpened] = useState(false);
+
   const resetFilter = (e) => {
     setFilter({
       search: "",
-      page: {
-        from: 0,
-        to: 5000,
-      },
-      year: {
-        from: 1600,
-        to: new Date().getFullYear(),
-      },
+      page: structuredClone(FILTER_PAGES),
+      year: structuredClone(FILTER_YEAR),
       inStock: true,
     });
   };
 
   return (
-    <div className="books__filter">
-      <h2>
-        <FaFilter />
-        Фильтры
-      </h2>
+    <div
+      className={opened ? "books__filter opened" : "books__filter"}
+      {...props}
+    >
+      <div className="filter__header">
+        <h2>
+          <FaFilter />
+          Фильтры
+        </h2>
+        <Button onClick={() => setOpened(!opened)}>
+          <RiArrowDropDownLine />
+        </Button>
+      </div>
       <div className="filter__content">
         <Input
           id="searchBar"
@@ -33,80 +41,37 @@ function BookFilter({ filter, setFilter, getBooks, ...props }) {
           onChange={(e) => setFilter({ ...filter, search: e.target.value })}
           value={filter.search}
         />
-        <div className="filter__pages">
-          <p style={{ fontSize: "20px", fontWeight: "700" }}>
-            По количеству страниц
-          </p>
-          <div className="filter__counts">
-            <Input
-              id="startPage"
-              type="number"
-              placeholder="от"
-              min="0"
-              max="4990"
-              step="10"
+        <div className="filter__ranges">
+          <div className="filter__pages">
+            <Range
+              text={`По количеству страниц: ${filter.page.from} - ${filter.page.to}`}
+              min={FILTER_PAGES.from}
+              max={FILTER_PAGES.to}
+              value={[filter.page.from, filter.page.to]}
               onChange={(e) =>
                 setFilter({
                   ...filter,
-                  page: { ...filter.page, from: e.target.value },
+                  page: { from: e[0], to: e[1] },
                 })
               }
-              value={filter.page.from}
             />
-            <span>-</span>
-            <Input
-              id="endPage"
-              type="number"
-              placeholder="до"
-              min="10"
-              max="5000"
-              step="10"
+          </div>
+          <div className="filter__years">
+            <Range
+              text={`По году релиза: ${filter.year.from} - ${filter.year.to}`}
+              min={FILTER_YEAR.from}
+              max={FILTER_YEAR.to}
+              value={[filter.year.from, filter.year.to]}
               onChange={(e) =>
                 setFilter({
                   ...filter,
-                  page: { ...filter.page, to: e.target.value },
+                  year: { from: e[0], to: e[1] },
                 })
               }
-              value={filter.page.to}
             />
           </div>
         </div>
-        <div className="filter__years">
-          <p style={{ fontSize: "20px", fontWeight: "700" }}>По году релиза</p>
-          <div className="filter__counts">
-            <Input
-              id="startYear"
-              type="number"
-              placeholder="с"
-              min="1600"
-              max="2022"
-              step="1"
-              onChange={(e) =>
-                setFilter({
-                  ...filter,
-                  year: { ...filter.year, from: e.target.value },
-                })
-              }
-              value={filter.year.from}
-            />
-            <span>-</span>
-            <Input
-              id="endYear"
-              type="number"
-              placeholder="по"
-              min="1600"
-              max={new Date().getFullYear()}
-              step="1"
-              onChange={(e) =>
-                setFilter({
-                  ...filter,
-                  year: { ...filter.year, to: e.target.value },
-                })
-              }
-              value={filter.year.to}
-            />
-          </div>
-        </div>
+
         <Checkbox
           id="stock"
           text="В наличии"
