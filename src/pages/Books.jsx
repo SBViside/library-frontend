@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useRef } from "react";
 import BooksList from "../components/BooksList";
 import useFetch from "../hooks/useFetch";
 import BookFilter from "../components/BookFilter";
@@ -7,8 +6,10 @@ import useDebounce from "../hooks/useDebounce";
 import { getPages } from "../utils/utils";
 import PaginationController from "../components/PaginationController";
 import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
+import BookController from "../controller/BookController";
 
 function Books() {
+  const hder = useRef();
   const [filter, setFilter] = useState({
     search: "",
     page: structuredClone(FILTER_PAGES),
@@ -23,32 +24,38 @@ function Books() {
 
   const [books, setBooks] = useState([]);
   const [booksLoading, getBooks, booksError] = useFetch(async () => {
-    let response = await axios({
-      method: "post",
-      url: `/db/books/amount`,
-      data: filter,
-    });
-    const amountOfBooks = response.data.length;
-
+    let response = await BookController.getFilteredBooks(filter);
+    const amountOfBooks = response.length;
     setTotalPages(getPages(amountOfBooks, pagesLimit));
 
-    response = await axios({
-      method: "post",
-      url: `/db/books/?page=${currentPage}&limit=${pagesLimit}`,
-      data: filter,
-    });
-    setBooks(response.data);
+    response = await BookController.getFilteredBooksByPageAndLimit(
+      currentPage,
+      pagesLimit,
+      filter
+    );
+    setBooks(response);
   });
 
   useEffect(() => {
     getBooks();
+    hder.current.textContent =
+      filter.search.length > 0
+        ? `Книги по запросу «${filter.search}»`
+        : "Книги";
   }, [debounceFilter, currentPage]);
 
   return (
     <div className="books container">
       <div className="books__content">
         <BookFilter filter={filter} setFilter={setFilter} getBooks={getBooks} />
-        {booksError ?? <BooksList books={books} booksLoading={booksLoading} />}
+        {booksError ?? (
+          <>
+            <h1 className="caption" ref={hder}>
+              Книги
+            </h1>
+            <BooksList books={books} booksLoading={booksLoading} />
+          </>
+        )}
       </div>
       {booksLoading || (
         <PaginationController

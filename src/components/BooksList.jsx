@@ -10,8 +10,6 @@ function BooksList({ books, booksLoading }) {
     <Loader />
   ) : (
     <>
-      <h1 className="caption">Книги</h1>
-
       <div className="booksList">
         {books.map((b) => (
           <BookItem key={b.id} book={b} />

@@ -40,6 +40,7 @@ function BookFilter({ filter, setFilter, getBooks, ...props }) {
           placeholder="Название книги"
           onChange={(e) => setFilter({ ...filter, search: e.target.value })}
           value={filter.search}
+          maxLength="49"
         />
         <div className="filter__ranges">
           <div className="filter__pages">
