@@ -1,6 +1,6 @@
 .login {
   width: 100%;
-  height: 600px;
+  height: 700px;
 
   .caption {
     padding: 0 !important;
@@ -12,7 +12,7 @@
 
   .login__content {
     width: 350px;
-    display: inline-block;
+    // display: inline-block;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
     top: 50%;
@@ -20,9 +20,33 @@
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 30px;
+    padding-top: 80px;
     border-bottom: 5px solid $orange;
     border-radius: 10px;
     overflow: hidden;
+
+    .login__tabs {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+
+      div {
+        flex-grow: 1;
+        padding: 15px;
+        text-align: center;
+        font-weight: 700;
+        background-color: $lightgray;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease-out;
+        &.selected {
+          background-color: white;
+          cursor: default;
+        }
+      }
+    }
 
     .login__inputs {
       width: 100%;
@@ -30,6 +54,9 @@
       flex-direction: column;
       gap: 10px;
 
+      .select {
+        outline-color: $orange;
+      }
       .login__input {
         width: 100%;
         input {
@@ -56,10 +83,14 @@
     .login__buttons {
       margin-top: 15px;
 
-      #log_in {
+      #log_in,
+      #register {
         width: 100%;
         background-color: $orange;
         color: $white;
+      }
+      #register {
+        margin-top: 10px;
       }
     }
   }
@@ -67,11 +98,11 @@
 
 @media (max-width: 460px) {
   .login {
-    height: 400px;
+    min-height: 400px;
 
     .login__content {
       width: 100% !important;
-      padding: 20px !important;
+      //   padding: 20px !important;
     }
   }
 }

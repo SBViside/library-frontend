@@ -1,80 +1,45 @@
 import { useContext, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { loginContext } from "../context/loginContext";
-import Button from "../components/UI/button/Button";
-import Checkbox from "../components/UI/checkbox/Checkbox";
-import Input from "../components/UI/input/Input";
-import axios from "axios";
+import LoginTab from "../components/LoginTab";
+import RegistrationTab from "../components/RegistrationTab";
 
 function Login() {
-  const navigate = useNavigate();
-  const warn = useRef();
-
   const logContext = useContext(loginContext);
+
   const setLogined = logContext.setLogined;
+  const [logTab, setLogTab] = useState(true);
 
-  const [inputs, setInputs] = useState({ email: "", pass: "" });
-
-  const login = (e) => {
-    checkCustomer();
-  };
-
-  const checkCustomer = async () => {
-    const response = await axios.post("/user", inputs);
-
-    if (!response.data.exist) {
-      setInputs({ email: "", pass: "" });
-      warn.current.style.visibility = "visible";
-      return;
-    }
-
-    const user = { email: inputs.email, admin: response.data.admin };
-    // DOM
-    const remember = document.getElementById("remember").checked;
-    if (remember) localStorage.setItem("user", JSON.stringify(user));
-
-    setLogined(user);
-    navigate("/books");
-  };
+  const [loginInputs, setLoginInputs] = useState({ email: "", pass: "" });
+  const [registrationInputs, setRegistrationInputs] = useState({});
 
   return (
     <div className="login container">
       <div className="login__content">
-        <h1 className="caption">Вход на сайт</h1>
-        <div className="login__inputs">
-          <div className="login__input">
-            <Input
-              id="email"
-              type="text"
-              placeholder="E-Mail"
-              value={inputs.email}
-              onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
-            />
+        <div className="login__tabs">
+          <div
+            className={logTab ? "selected" : ""}
+            onClick={(e) => setLogTab(true)}
+          >
+            Вход на сайт
           </div>
-          <div className="login__input">
-            <Input
-              id="pass"
-              type="password"
-              placeholder="Password"
-              value={inputs.pass}
-              onChange={(e) => setInputs({ ...inputs, pass: e.target.value })}
-            />
-          </div>
-          <div className="login__input">
-            <Checkbox id="remember" text="Запомнить меня" />
-          </div>
-          <div className="login__input">
-            <p className="warn" ref={warn}>
-              Неверный E-Mail или Пароль
-            </p>
+          <div
+            className={!logTab ? "selected" : ""}
+            onClick={(e) => setLogTab(false)}
+          >
+            Регистрация
           </div>
         </div>
-
-        <div className="login__buttons">
-          <Button id="log_in" onClick={login}>
-            Войти
-          </Button>
-        </div>
+        <LoginTab
+          loginInputs={loginInputs}
+          setLoginInputs={setLoginInputs}
+          setLogined={setLogined}
+          style={{ display: logTab ? "block" : "none" }}
+        />
+        <RegistrationTab
+          registrationInputs={registrationInputs}
+          setRegistrationInputs={setRegistrationInputs}
+          style={{ display: !logTab ? "block" : "none" }}
+        />
       </div>
     </div>
   );
