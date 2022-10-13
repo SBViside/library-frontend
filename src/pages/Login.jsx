@@ -10,7 +10,15 @@ function Login() {
   const [logTab, setLogTab] = useState(true);
 
   const [loginInputs, setLoginInputs] = useState({ email: "", pass: "" });
-  const [registrationInputs, setRegistrationInputs] = useState({});
+  const [registrationInputs, setRegistrationInputs] = useState({
+    surname: "",
+    name: "",
+    patronymic: "",
+    gender: "",
+    email: "",
+    pass1: "",
+    pass2: "",
+  });
 
   return (
     <div className="login container">
@@ -38,6 +46,7 @@ function Login() {
         <RegistrationTab
           registrationInputs={registrationInputs}
           setRegistrationInputs={setRegistrationInputs}
+          setLogined={setLogined}
           style={{ display: !logTab ? "block" : "none" }}
         />
       </div>
