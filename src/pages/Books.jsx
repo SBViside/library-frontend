@@ -20,7 +20,7 @@ function Books() {
 
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pagesLimit, setPagesLimit] = useState(5);
+  const [pagesLimit, setPagesLimit] = useState(10);
 
   const [books, setBooks] = useState([]);
   const [booksLoading, getBooks, booksError] = useFetch(async () => {
@@ -47,9 +47,11 @@ function Books() {
   return (
     <div className="books container">
       <div className="books__content">
-        <BookFilter filter={filter} setFilter={setFilter} getBooks={getBooks} />
-        {booksError ?? (
+        {booksError ? (
+          <h1 className="ERROR">{booksError}</h1>
+        ) : (
           <>
+            <BookFilter filter={filter} setFilter={setFilter} />
             <h1 className="caption" ref={hder}>
               Книги
             </h1>

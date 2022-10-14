@@ -1,7 +1,10 @@
 import Button from "./UI/button/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-function BookItem({ book, ...props }) {
+function BookItem({ book, logined, ...props }) {
+  const navigator = useNavigate();
+
   return (
     <div className="bookItem" {...props}>
       <div
@@ -30,8 +33,30 @@ function BookItem({ book, ...props }) {
         <div className="bookItem__description">{book.description}</div>
       </div>
       <div className="bookItem__buttons">
-        <Button>Оформить</Button>
-        <Button>Подробнее</Button>
+        <Button
+          onClick={(e) => {
+            if (!logined.email) {
+              navigator("/login");
+              return;
+            } else {
+              //   navigator(`/book/${book.id}`);
+            }
+          }}
+        >
+          Оформить
+        </Button>
+        <Button
+          onClick={(e) => {
+            if (!logined.email) {
+              navigator("/login");
+              return;
+            } else {
+              //   navigator(`/book/${book.id}`);
+            }
+          }}
+        >
+          Подробнее
+        </Button>
       </div>
       <div className="book__underline"></div>
     </div>

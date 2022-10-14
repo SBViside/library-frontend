@@ -7,7 +7,7 @@ import Checkbox from "./UI/checkbox/Checkbox";
 import Range from "./UI/range/Range";
 import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
 
-function BookFilter({ filter, setFilter, getBooks, ...props }) {
+function BookFilter({ filter, setFilter, ...props }) {
   const [opened, setOpened] = useState(false);
 
   const resetFilter = (e) => {
