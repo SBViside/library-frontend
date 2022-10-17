@@ -14,11 +14,12 @@
       max-height: 125px;
       display: flex;
       flex-direction: column;
-      transition: all 0.2s ease-out;
+      //   transition: all 0.4s ease;
       overflow: hidden;
 
       &.opened {
-        max-height: 350px !important;
+        overflow: visible;
+        max-height: 500px !important;
         .filter__header {
           button {
             outline: 2px solid $orange;
@@ -63,17 +64,27 @@
         align-self: end;
       }
 
+      #searchBar {
+        margin-bottom: 20px;
+        border-color: $orange;
+        //   border-radius: 5px;
+        border-width: 3px;
+      }
       .filter__content {
-        #searchBar {
-          margin-bottom: 20px;
-          border-color: $orange;
-          //   border-radius: 5px;
-          border-width: 3px;
-        }
+        display: flex;
+        gap: 30px;
         .filter__ranges {
           margin-bottom: 20px;
           display: flex;
-          gap: 60px;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .filter__genras {
+          flex-grow: 1;
+          .select {
+            margin-top: 10px;
+            margin-bottom: 15px;
+          }
         }
       }
     }
@@ -201,11 +212,16 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   .books__filter {
-    .filter__ranges {
-      flex-direction: column;
-      gap: 10px !important;
+    .filter__content {
+      gap: 0px !important;
+      flex-direction: column !important;
+      .filter__genras {
+        .select {
+          margin-top: 0 !important;
+        }
+      }
     }
   }
 }
@@ -256,6 +272,13 @@
           width: 100%;
           .text {
             font-size: 12px;
+          }
+        }
+      }
+      .filter__genras {
+        .select {
+          * {
+            font-size: 12px !important;
           }
         }
       }

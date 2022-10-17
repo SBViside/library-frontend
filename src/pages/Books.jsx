@@ -14,6 +14,7 @@ function Books() {
     search: "",
     page: structuredClone(FILTER_PAGES),
     year: structuredClone(FILTER_YEAR),
+    genres: [],
     inStock: true,
   });
   const debounceFilter = useDebounce(filter, 1000);
