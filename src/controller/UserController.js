@@ -12,6 +12,10 @@ class UserController {
         const response = await axios.post('/user/create', user);
         return response.data;
     }
+    static async getUser(email) {
+        const response = await axios.get(`/user?email=${email}`);
+        return response.data;
+    }
 }
 
 export default UserController;

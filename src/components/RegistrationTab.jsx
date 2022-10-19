@@ -16,7 +16,7 @@ function RegistrationTab({
   const navigate = useNavigate();
 
   const registration = async (e) => {
-    if (!(checkPasswords() && checkLength() && checkEmail())) return;
+    if (!(checkLength() && checkPasswords() && checkEmail())) return;
 
     const exist = await UserController.userExist(registrationInputs.email);
 
@@ -45,7 +45,6 @@ function RegistrationTab({
     if (
       registrationInputs.surname.length &&
       registrationInputs.name.length &&
-      registrationInputs.patronymic.length &&
       registrationInputs.gender.length
     ) {
       return true;

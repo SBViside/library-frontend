@@ -1,0 +1,109 @@
+.authors {
+  flex-grow: 1;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding-bottom: 30px !important;
+
+  .authors__content {
+    .authors__list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .authors__item {
+        padding: 10px;
+        display: flex;
+        gap: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+
+        .authors__image {
+          min-width: 200px;
+          min-height: 200px;
+
+          background-image: url("https://basmo.app/wp-content/uploads/2022/03/assets2FJ5LVHEL-1.jpg");
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: 50% 50%;
+
+          cursor: pointer;
+        }
+        .authors__info {
+          .authors__name {
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            color: $dark;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+          .authors__description {
+            margin-bottom: 10px;
+            padding-right: 20px;
+            color: $gray;
+            text-align: justify;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .authors__item {
+    flex-direction: column;
+
+    .authors__image {
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+    }
+
+    .authors__name {
+      text-align: center;
+    }
+
+    .authors__description {
+      padding: 10px;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .books__filter {
+    .filter__content {
+      .filter__ranges {
+        flex-direction: column;
+        gap: 10px !important;
+        .range {
+          width: 100%;
+          .text {
+            font-size: 12px;
+          }
+        }
+      }
+      .filter__genras {
+        .select {
+          * {
+            font-size: 12px !important;
+          }
+        }
+      }
+    }
+    #reset_filter {
+      margin-top: 20px;
+      width: 100% !important;
+    }
+  }
+}
+@media (max-width: 360px) {
+  .bookItem {
+    padding-bottom: 130px !important;
+    .bookItem__buttons {
+      width: 100%;
+      flex-direction: column !important;
+    }
+  }
+}

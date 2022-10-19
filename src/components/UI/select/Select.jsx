@@ -20,6 +20,7 @@ const myStyles = {
     borderRadius: "0",
     borderWidth: 1,
     borderColor: state.isFocused ? variables.orange : variables.gray,
+    borderRadius: "5px",
     boxShadow: null,
     "&:hover": {
       borderColor: variables.orange,
