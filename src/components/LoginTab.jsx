@@ -28,6 +28,7 @@ function LoginTab({ loginInputs, setLoginInputs, setLogined, ...props }) {
     if (remember) localStorage.setItem("user", JSON.stringify(user));
 
     setLogined(user);
+    window.scrollTo(0, 0);
     navigate("/books");
   };
 

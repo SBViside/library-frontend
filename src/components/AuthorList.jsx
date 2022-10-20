@@ -25,8 +25,11 @@ function AuthorList({ authorsLoading, authors }) {
             <h2
               className="authors__name"
               onClick={() => {
-                if (logined) {
-                  navigator(`/author/books/${a.id}`);
+                window.scrollTo(0, 0);
+                if (logined.email) {
+                  navigator(`/books/author/${a.id}`);
+                } else {
+                  navigator(`/login`);
                 }
               }}
             >

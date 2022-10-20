@@ -30,6 +30,7 @@ function RegistrationTab({
     console.log(newUser);
 
     setLogined({ email: registrationInputs.email, admin: false });
+    window.scrollTo(0, 0);
     navigate("/books");
   };
 

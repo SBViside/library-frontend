@@ -6,6 +6,35 @@
   padding-bottom: 30px !important;
 
   .authors__content {
+    .author__filter {
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 5px 5px;
+      background-color: white;
+      max-height: 125px;
+      overflow: hidden;
+
+      .filter__header {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        h2 {
+          font-size: 20px;
+          color: $dark;
+          svg {
+            margin-right: 10px;
+            fill: $dark;
+          }
+        }
+      }
+      #searchBar {
+        margin-bottom: 20px;
+        border-color: $orange;
+        border-width: 3px;
+      }
+    }
+
     .authors__list {
       display: flex;
       flex-direction: column;
@@ -13,6 +42,7 @@
       .authors__item {
         padding: 10px;
         display: flex;
+        align-items: start;
         gap: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
@@ -52,7 +82,7 @@
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 580px) {
   .authors__item {
     flex-direction: column;
 

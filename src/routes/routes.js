@@ -6,6 +6,7 @@ import About from '../pages/About';
 import Admin from '../pages/Admin';
 import Login from '../pages/Login';
 import Logout from '../pages/Logout';
+import BooksID from '../pages/BooksID';
 
 const publicRoutes = [
     { path: '/books', element: Books, exact: true },
@@ -16,6 +17,7 @@ const publicRoutes = [
 ];
 const privateRoutes = [
     { path: '/books', element: Books, exact: true },
+    { path: '/books/author/:id', element: BooksID, exact: true },
     { path: '/authors', element: Authors, exact: true },
     { path: '/profile', element: Profile, exact: true },
     { path: '/about', element: About, exact: false },

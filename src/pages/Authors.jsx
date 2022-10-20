@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useFetch from "../hooks/useFetch";
 import { getPages } from "../utils/utils";
 import AuthorController from "../controller/AuthorController";
 import PaginationController from "../components/PaginationController";
 import AuthorList from "../components/AuthorList";
+import AuthorFilter from "../components/AuthorFilter";
+import useDebounce from "../hooks/useDebounce";
 
 function Authors() {
   const [authors, setAuthors] = useState([]);
   const [filter, setFilter] = useState({ search: "" });
+  const debounceFilter = useDebounce(filter, 1000);
 
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,11 +32,12 @@ function Authors() {
 
   useEffect(() => {
     getAuthors();
-  }, [currentPage]);
+  }, [currentPage, debounceFilter]);
 
   return (
     <div className="authors container">
       <div className="authors__content">
+        <AuthorFilter filter={filter} setFilter={setFilter} />
         <h1 className="caption">Авторы</h1>
         <AuthorList authorsLoading={authorsLoading} authors={authors} />
         {authorsLoading || (

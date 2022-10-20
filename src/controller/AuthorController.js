@@ -17,6 +17,13 @@ class AuthorController {
         });
         return response.data;
     }
+    static async getNameByID(ID) {
+        const response = await axios({
+            method: "get",
+            url: `/db/authors?id=${ID}`,
+        });
+        return response.data;
+    }
 }
 
 export default AuthorController;
