@@ -36,6 +36,14 @@ class BookController {
         });
         return response.data;
     }
+
+    static async getBookByID(id) {
+        const response = await axios({
+            method: "get",
+            url: `/db/books/${id}`
+        });
+        return response.data;
+    }
 }
 
 export default BookController;

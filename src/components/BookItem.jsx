@@ -5,16 +5,32 @@ import { useNavigate } from "react-router-dom";
 function BookItem({ book, logined, ...props }) {
   const navigator = useNavigate();
 
+  const gotoBook = () => {
+    window.scrollTo(0, 0);
+    if (!logined.email) {
+      navigator("/login");
+      return;
+    } else {
+      navigator(`/books/${book.id}`);
+    }
+  };
+
   return (
     <div className="bookItem" {...props}>
       <div
         className="bookItem__image"
         style={{ backgroundImage: `url('${book.url}')` }}
+        onClick={gotoBook}
       ></div>
       <div className="bookItem__info">
-        <h2 className="bookItem__title">{book.title}</h2>
+        <h2 className="bookItem__title" onClick={gotoBook}>
+          {book.title}
+        </h2>
         <h3 className="bookItem__author">
-          {book.author} / {book.release_year}
+          <span onClick={() => navigator(`/books/author/${book.author_id}`)}>
+            {book.author}
+          </span>{" "}
+          / {book.release_year}
         </h3>
         <h3
           className={
@@ -33,30 +49,8 @@ function BookItem({ book, logined, ...props }) {
         <div className="bookItem__description">{book.description}</div>
       </div>
       <div className="bookItem__buttons">
-        <Button
-          onClick={(e) => {
-            if (!logined.email) {
-              navigator("/login");
-              return;
-            } else {
-              //   navigator(`/book/${book.id}`);
-            }
-          }}
-        >
-          Оформить
-        </Button>
-        <Button
-          onClick={(e) => {
-            if (!logined.email) {
-              navigator("/login");
-              return;
-            } else {
-              //   navigator(`/book/${book.id}`);
-            }
-          }}
-        >
-          Подробнее
-        </Button>
+        <Button onClick={gotoBook}>Оформить</Button>
+        <Button onClick={gotoBook}>Подробнее</Button>
       </div>
       <div className="book__underline"></div>
     </div>

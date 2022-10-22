@@ -136,6 +136,13 @@
             margin-bottom: 10px;
             color: $gray;
             font-size: 14px;
+            span {
+              font-size: 14px;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
           }
           .bookItem__avalible {
             margin-bottom: 10px;

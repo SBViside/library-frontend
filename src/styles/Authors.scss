@@ -83,6 +83,11 @@
 }
 
 @media (max-width: 580px) {
+  .authors__content {
+    .caption {
+      font-size: 30px !important;
+    }
+  }
   .authors__item {
     flex-direction: column;
 

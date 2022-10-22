@@ -61,7 +61,7 @@ function BooksID() {
           <>
             <BookFilter filter={filter} setFilter={setFilter} />
             <h1 className="caption" ref={hder}>
-              Книги
+              Загрузка...
             </h1>
             <BooksList books={books} booksLoading={booksLoading} />
           </>
