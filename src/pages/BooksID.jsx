@@ -13,7 +13,7 @@ import AuthorController from "../controller/AuthorController";
 function BooksID() {
   const { id } = useParams();
 
-  const hder = useRef();
+  const [author, setAuthor] = useState("Загрузка...");
   const [filter, setFilter] = useState({
     search: "",
     page: structuredClone(FILTER_PAGES),
@@ -40,13 +40,17 @@ function BooksID() {
       id
     );
     setBooks(response);
+
+    if (response.length > 0 && author === "Загрузка...") {
+      setAuthor(response[0].author);
+    }
   });
 
-  useEffect(() => {
-    AuthorController.getNameByID(id).then((result) => {
-      hder.current.textContent = result.name;
-    });
-  }, []);
+  //   useEffect(() => {
+  //     AuthorController.getNameByID(id).then((result) => {
+  //       setAuthor(result.name);
+  //     });
+  //   }, []);
 
   useEffect(() => {
     getBooks();
@@ -60,9 +64,7 @@ function BooksID() {
         ) : (
           <>
             <BookFilter filter={filter} setFilter={setFilter} />
-            <h1 className="caption" ref={hder}>
-              Загрузка...
-            </h1>
+            <h1 className="caption">{author}</h1>
             <BooksList books={books} booksLoading={booksLoading} />
           </>
         )}

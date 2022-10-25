@@ -14,6 +14,15 @@ function BookItem({ book, logined, ...props }) {
       navigator(`/books/${book.id}`);
     }
   };
+  const gotoAuthor = () => {
+    window.scrollTo(0, 0);
+    if (!logined.email) {
+      navigator("/login");
+      return;
+    } else {
+      navigator(`/books/author/${book.author_id}`);
+    }
+  };
 
   return (
     <div className="bookItem" {...props}>
@@ -27,10 +36,7 @@ function BookItem({ book, logined, ...props }) {
           {book.title}
         </h2>
         <h3 className="bookItem__author">
-          <span onClick={() => navigator(`/books/author/${book.author_id}`)}>
-            {book.author}
-          </span>{" "}
-          / {book.release_year}
+          <span onClick={gotoAuthor}>{book.author}</span> / {book.release_year}
         </h3>
         <h3
           className={

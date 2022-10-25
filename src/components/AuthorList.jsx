@@ -11,6 +11,15 @@ function AuthorList({ authorsLoading, authors }) {
     return <h1 className="books__notFound">Авторов не найдено...</h1>;
   }
 
+  const gotoBook = (id) => {
+    window.scrollTo(0, 0);
+    if (logined.email) {
+      navigator(`/books/author/${id}`);
+    } else {
+      navigator(`/login`);
+    }
+  };
+
   return authorsLoading ? (
     <Loader />
   ) : (
@@ -18,21 +27,12 @@ function AuthorList({ authorsLoading, authors }) {
       {authors.map((a) => (
         <div key={a.id} className="authors__item">
           <div
+            onClick={() => gotoBook(a.id)}
             className="authors__image"
             style={{ backgroundImage: `url('${a.url}')` }}
           ></div>
           <div className="authors__info">
-            <h2
-              className="authors__name"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                if (logined.email) {
-                  navigator(`/books/author/${a.id}`);
-                } else {
-                  navigator(`/login`);
-                }
-              }}
-            >
+            <h2 className="authors__name" onClick={() => gotoBook(a.id)}>
               {a.name}
             </h2>
             <p className="authors__description">{a.description}</p>
