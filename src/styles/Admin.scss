@@ -1,7 +1,7 @@
 @import "./variables";
 
 .admin {
-  min-height: 600px;
+  flex-grow: 1;
   width: 100%;
   background-color: white;
   .admin__content {

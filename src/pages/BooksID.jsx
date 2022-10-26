@@ -11,6 +11,8 @@ import BookController from "../controller/BookController";
 import AuthorController from "../controller/AuthorController";
 
 function BooksID() {
+  window.scrollTo(0, 0);
+
   const { id } = useParams();
 
   const [author, setAuthor] = useState("Загрузка...");
@@ -19,7 +21,7 @@ function BooksID() {
     page: structuredClone(FILTER_PAGES),
     year: structuredClone(FILTER_YEAR),
     genres: [],
-    inStock: true,
+    inStock: false,
   });
   const debounceFilter = useDebounce(filter, 1000);
 

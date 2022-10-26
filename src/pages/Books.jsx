@@ -9,13 +9,15 @@ import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
 import BookController from "../controller/BookController";
 
 function Books() {
+  window.scrollTo(0, 0);
+
   const hder = useRef();
   const [filter, setFilter] = useState({
     search: "",
     page: structuredClone(FILTER_PAGES),
     year: structuredClone(FILTER_YEAR),
     genres: [],
-    inStock: true,
+    inStock: false,
   });
   const debounceFilter = useDebounce(filter, 1000);
 

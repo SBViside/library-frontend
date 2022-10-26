@@ -12,7 +12,6 @@ function AuthorList({ authorsLoading, authors }) {
   }
 
   const gotoBook = (id) => {
-    window.scrollTo(0, 0);
     if (logined.email) {
       navigator(`/books/author/${id}`);
     } else {

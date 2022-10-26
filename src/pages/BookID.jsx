@@ -5,8 +5,12 @@ import BookController from "../controller/BookController";
 import Loader from "../components/UI/loader/Loader";
 import { MdOutlineLibraryAdd, MdOutlineZoomOutMap } from "react-icons/md";
 import Modal from "../components/UI/modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 function BookID() {
+  window.scrollTo(0, 0);
+  const navigate = useNavigate();
+
   const { id } = useParams();
 
   const [modal, setModal] = useState(false);
@@ -18,7 +22,6 @@ function BookID() {
     const [bookData, genres] = await BookController.getBookByID(id);
     setBook(bookData);
     setGenres(genres);
-    console.log(bookData);
   });
 
   useEffect(() => {
@@ -42,7 +45,10 @@ function BookID() {
               {book.title} <span className="number">№{book.id}</span>
             </h1>
             <p className="author">
-              <span>{book.author}</span>, {book.release_year}
+              <span onClick={() => navigate(`/books/author/${book.author_id}`)}>
+                {book.author}
+              </span>
+              , {book.release_year}
             </p>
             {book.avalible_amount > 0 ? (
               <button id="makeOrder">
@@ -76,7 +82,7 @@ function BookID() {
 
             <div className="information">
               <h1>Описание</h1>
-              <p>{book.description}</p>
+              <p style={{ textAlign: "justify" }}>{book.description}</p>
             </div>
 
             <div className="information">

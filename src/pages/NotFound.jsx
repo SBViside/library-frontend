@@ -1,6 +1,8 @@
 import { GiArchiveResearch } from "react-icons/gi";
 
 function NotFound(props) {
+  window.scrollTo(0, 0);
+
   return (
     <div className="notFound container">
       <div className="picture">

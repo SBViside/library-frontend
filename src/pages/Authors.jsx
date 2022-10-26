@@ -8,6 +8,8 @@ import AuthorFilter from "../components/AuthorFilter";
 import useDebounce from "../hooks/useDebounce";
 
 function Authors() {
+  window.scrollTo(0, 0);
+
   const [authors, setAuthors] = useState([]);
   const [filter, setFilter] = useState({ search: "" });
   const debounceFilter = useDebounce(filter, 1000);

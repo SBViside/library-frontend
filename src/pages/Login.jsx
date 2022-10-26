@@ -4,6 +4,8 @@ import LoginTab from "../components/LoginTab";
 import RegistrationTab from "../components/RegistrationTab";
 
 function Login() {
+  window.scrollTo(0, 0);
+
   const logContext = useContext(loginContext);
 
   const setLogined = logContext.setLogined;

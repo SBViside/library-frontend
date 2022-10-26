@@ -4,6 +4,8 @@ import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
 function Admin() {
+  window.scrollTo(0, 0);
+
   const [verification, setVerification] = useState(true);
 
   const [tables, setTables] = useState([

@@ -4,6 +4,8 @@ import useFetch from "../hooks/useFetch";
 import UserController from "../controller/UserController";
 
 function Profile() {
+  window.scrollTo(0, 0);
+
   const { logined, setLogined } = useContext(loginContext);
 
   const [user, setUser] = useState({});

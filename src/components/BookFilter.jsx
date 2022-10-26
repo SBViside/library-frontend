@@ -31,7 +31,7 @@ function BookFilter({ filter, setFilter, ...props }) {
       page: structuredClone(FILTER_PAGES),
       year: structuredClone(FILTER_YEAR),
       genres: [],
-      inStock: true,
+      inStock: false,
     });
   };
 
