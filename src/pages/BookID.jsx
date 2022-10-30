@@ -31,7 +31,7 @@ function BookID() {
   return (
     <div className="bookID container">
       {bookLoading ? (
-        <Loader />
+        <Loader style={{ margin: "0 auto" }} />
       ) : (
         <div className="bookID__content">
           <div className="bookID__image" onClick={() => setModal(true)}>
