@@ -1,4 +1,4 @@
-function Table({ table }) {
+function Table({ table, ...props }) {
   return <div className="admin__table"></div>;
 }
 

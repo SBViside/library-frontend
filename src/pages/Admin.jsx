@@ -6,8 +6,6 @@ import axios from "axios";
 function Admin() {
   window.scrollTo(0, 0);
 
-  const [verification, setVerification] = useState(true);
-
   const [tables, setTables] = useState([
     { id: 1, name: "заказы" },
     { id: 2, name: "книги" },
@@ -18,57 +16,52 @@ function Admin() {
   const [index, setIndex] = useState(tables[0].id);
   const [database, setDatabase] = useState([]);
 
-  //   const [tables, setTables] = useState([]);
-  //   const [currentTableName, setCurrentTableName] = useState("");
-  //   const [currentTable, setCurrentTable] = useState([]);
+  const [dbLoading, getDatabase, dbError] = useFetch(async () => {
+    let url = "";
 
-  //   const [tablesLoading, getTables, tablesError] = useFetch(async () => {
-  //     const response = await axios.get("/db/tables");
-  //     const data = response.data;
-  //     setTables(data);
-  //     setCurrentTableName(data[0].table_name);
-  //   });
+    switch (index) {
+      case 1:
+        url = "/admin/orders/1234";
+        break;
+      case 2:
+        url = "/admin/books/1234";
+        break;
+      case 3:
+        url = "/admin/authors/1234";
+        break;
+      case 4:
+        url = "/admin/genres/1234";
+        break;
+      case 5:
+        url = "/admin/users/1234";
+    }
+    const response = await axios.get(url);
+    setDatabase(response.data);
+  });
 
-  //   const [currentTableLoading, getCurrentTable, currentTableError] = useFetch(
-  //     async () => {
-  //       const response = await axios.get(`/db/tables/${currentTableName}`);
-  //       setCurrentTable(response.data);
-  //     }
-  //   );
-
-  //   useEffect(() => {
-  //     getTables();
-  //   }, []);
-
-  //   useEffect(() => {
-  //     getCurrentTable();
-  //   }, [tables, currentTableName]);
+  useEffect(() => {
+    getDatabase();
+  }, [index]);
 
   return (
     <div className="admin container">
-      {verification ? (
-        <>
-          <h1 className="caption">Редактор базы данных</h1>
-          <div className="admin__content">
-            <div className="admin__tabs">
-              {tables.map((t) => (
-                <div key={t.id} className="admin__tab">
-                  <input
-                    type="radio"
-                    name="table"
-                    id={t.name}
-                    checked={t.id === index}
-                    onChange={(e) => setIndex(t.id)}
-                  />
-                  <label htmlFor={t.name}>{t.name}</label>
-                </div>
-              ))}
+      <h1 className="caption">Редактор базы данных</h1>
+      <div className="admin__content">
+        <div className="admin__tabs">
+          {tables.map((t) => (
+            <div key={t.id} className="admin__tab">
+              <input
+                type="radio"
+                name="table"
+                id={t.name}
+                checked={t.id === index}
+                onChange={(e) => setIndex(t.id)}
+              />
+              <label htmlFor={t.name}>{t.name}</label>
             </div>
-          </div>
-        </>
-      ) : (
-        <h1 className="caption">Вы не авторизированы</h1>
-      )}
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
