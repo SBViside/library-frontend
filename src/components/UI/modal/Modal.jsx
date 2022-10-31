@@ -1,4 +1,5 @@
 import cls from "./Modal.module.scss";
+import { RiCloseCircleFill } from "react-icons/ri";
 
 function Modal({ modal, setModal, children, ...props }) {
   if (!modal) return null;
@@ -11,6 +12,7 @@ function Modal({ modal, setModal, children, ...props }) {
     <div className={cls.main} onClick={stopModal}>
       <div className={cls.mainContent} onClick={(e) => e.stopPropagation()}>
         {children}
+        <RiCloseCircleFill onClick={() => setModal(false)} />
       </div>
     </div>
   );

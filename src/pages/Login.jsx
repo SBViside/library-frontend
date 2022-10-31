@@ -1,10 +1,12 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import { loginContext } from "../context/loginContext";
 import LoginTab from "../components/LoginTab";
 import RegistrationTab from "../components/RegistrationTab";
 
 function Login() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const logContext = useContext(loginContext);
 

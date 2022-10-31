@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { getPages } from "../utils/utils";
 import AuthorController from "../controller/AuthorController";
@@ -8,7 +8,9 @@ import AuthorFilter from "../components/AuthorFilter";
 import useDebounce from "../hooks/useDebounce";
 
 function Authors() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [authors, setAuthors] = useState([]);
   const [filter, setFilter] = useState({ search: "" });

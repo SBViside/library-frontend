@@ -70,6 +70,10 @@
       #reset_filter {
         width: 150px;
         align-self: end;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
       }
 
       #searchBar {

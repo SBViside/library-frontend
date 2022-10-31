@@ -1,28 +1,23 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import BooksList from "../components/BooksList";
 import useFetch from "../hooks/useFetch";
 import BookFilter from "../components/BookFilter";
 import useDebounce from "../hooks/useDebounce";
 import { getPages } from "../utils/utils";
 import PaginationController from "../components/PaginationController";
-import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
+import { CLEAR_FILTER } from "../utils/variables";
 import BookController from "../controller/BookController";
-import AuthorController from "../controller/AuthorController";
 
 function BooksID() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { id } = useParams();
 
   const [author, setAuthor] = useState("Загрузка...");
-  const [filter, setFilter] = useState({
-    search: "",
-    page: structuredClone(FILTER_PAGES),
-    year: structuredClone(FILTER_YEAR),
-    genres: [],
-    inStock: false,
-  });
+  const [filter, setFilter] = useState(structuredClone(CLEAR_FILTER));
   const debounceFilter = useDebounce(filter, 1000);
 
   const [totalPages, setTotalPages] = useState(null);
@@ -48,15 +43,13 @@ function BooksID() {
     }
   });
 
-  //   useEffect(() => {
-  //     AuthorController.getNameByID(id).then((result) => {
-  //       setAuthor(result.name);
-  //     });
-  //   }, []);
-
   useEffect(() => {
     getBooks();
   }, [debounceFilter, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debounceFilter]);
 
   return (
     <div className="books container">

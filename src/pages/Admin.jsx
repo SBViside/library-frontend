@@ -4,7 +4,9 @@ import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
 function Admin() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [tables, setTables] = useState([
     { id: 1, name: "заказы" },

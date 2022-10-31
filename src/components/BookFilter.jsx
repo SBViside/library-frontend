@@ -2,10 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import Button from "./UI/button/Button";
 import { FaFilter } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { GrPowerReset } from "react-icons/gr";
 import Input from "./UI/input/Input";
 import Checkbox from "./UI/checkbox/Checkbox";
 import Range from "./UI/range/Range";
-import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
+import { CLEAR_FILTER } from "../utils/variables";
 import Select from "./UI/select/Select";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
@@ -26,13 +27,7 @@ function BookFilter({ filter, setFilter, ...props }) {
 
   const resetFilter = (e) => {
     genreSelect.current.clearValue();
-    setFilter({
-      search: "",
-      page: structuredClone(FILTER_PAGES),
-      year: structuredClone(FILTER_YEAR),
-      genres: [],
-      inStock: false,
-    });
+    setFilter(structuredClone(CLEAR_FILTER));
   };
 
   return (
@@ -62,8 +57,8 @@ function BookFilter({ filter, setFilter, ...props }) {
           <div className="filter__range">
             <Range
               text={`По количеству страниц: ${filter.page.from} - ${filter.page.to}`}
-              min={FILTER_PAGES.from}
-              max={FILTER_PAGES.to}
+              min={CLEAR_FILTER.page.from}
+              max={CLEAR_FILTER.page.to}
               value={[filter.page.from, filter.page.to]}
               onChange={(e) =>
                 setFilter({
@@ -76,8 +71,8 @@ function BookFilter({ filter, setFilter, ...props }) {
           <div className="filter__range">
             <Range
               text={`По году релиза: ${filter.year.from} - ${filter.year.to}`}
-              min={FILTER_YEAR.from}
-              max={FILTER_YEAR.to}
+              min={CLEAR_FILTER.year.from}
+              max={CLEAR_FILTER.year.to}
               value={[filter.year.from, filter.year.to]}
               onChange={(e) =>
                 setFilter({
@@ -114,6 +109,7 @@ function BookFilter({ filter, setFilter, ...props }) {
       </div>
 
       <Button id="reset_filter" onClick={resetFilter}>
+        <GrPowerReset />
         Сбросить
       </Button>
     </div>

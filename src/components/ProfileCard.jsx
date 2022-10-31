@@ -1,7 +1,7 @@
 import malePNG from "../assets/man.png";
 import femalePNG from "../assets/woman.png";
 import adminPNG from "../assets/admin.png";
-
+import Modal from "./UI/modal/Modal";
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -59,18 +59,17 @@ function ProfileCard({ ...props }) {
                   Отчество: <span>{user.patronymic}</span>
                 </p>
               </div>
-              <p className="gender">
-                Пол: <span>{user.gender === "M" ? "мужской" : "женский"}</span>
-              </p>
-              <p className="email">
-                E-Mail:
-                <br />
-                <span>{user.email}</span>
-              </p>
-              <p className="date">
-                На сайте с{" "}
-                {user.registration_date && user.registration_date.slice(0, 10)}
-              </p>
+              <div className="other">
+                <p className="gender">
+                  Пол:{" "}
+                  <span>{user.gender === "M" ? "мужской" : "женский"}</span>
+                </p>
+                <p className="email">
+                  E-Mail:
+                  <br />
+                  <span>{user.email}</span>
+                </p>
+              </div>
             </div>
             <div className="profile__data">
               <div className="buttons">
@@ -80,7 +79,7 @@ function ProfileCard({ ...props }) {
                 >
                   Изменить пароль
                 </Button>
-                {passwordChange && <ChangePassword userID={user.id} />}
+
                 <Button
                   id="logout"
                   onClick={() => {
@@ -96,9 +95,17 @@ function ProfileCard({ ...props }) {
                 </Button>
               </div>
             </div>
-            <div className="number">№{user.id}</div>
+            <div className="number">
+              На сайте с{" "}
+              {user.registration_date && user.registration_date.slice(0, 10)}
+            </div>
           </div>
         </>
+      )}
+      {passwordChange && (
+        <Modal modal={passwordChange} setModal={setPasswordChange}>
+          <ChangePassword userID={user.id} setModal={setPasswordChange} />
+        </Modal>
       )}
     </div>
   );

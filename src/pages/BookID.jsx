@@ -10,9 +10,7 @@ import { useNavigate } from "react-router-dom";
 import ConfirmTheOrder from "../components/ConfirmTheOrder";
 
 function BookID() {
-  //   window.scrollTo(0, 0);
   const navigate = useNavigate();
-
   const { id } = useParams();
 
   const [modalView, setModalView] = useState(false);
@@ -28,6 +26,7 @@ function BookID() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getBook();
   }, []);
 

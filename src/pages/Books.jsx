@@ -1,29 +1,25 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import BooksList from "../components/BooksList";
 import useFetch from "../hooks/useFetch";
 import BookFilter from "../components/BookFilter";
 import useDebounce from "../hooks/useDebounce";
 import { getPages } from "../utils/utils";
 import PaginationController from "../components/PaginationController";
-import { FILTER_PAGES, FILTER_YEAR } from "../utils/variables";
+import { CLEAR_FILTER } from "../utils/variables";
 import BookController from "../controller/BookController";
 
 function Books() {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const hder = useRef();
-  const [filter, setFilter] = useState({
-    search: "",
-    page: structuredClone(FILTER_PAGES),
-    year: structuredClone(FILTER_YEAR),
-    genres: [],
-    inStock: false,
-  });
+  const [filter, setFilter] = useState(structuredClone(CLEAR_FILTER));
   const debounceFilter = useDebounce(filter, 1000);
 
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pagesLimit, setPagesLimit] = useState(10);
+  const [pagesLimit, setPagesLimit] = useState(2);
 
   const [books, setBooks] = useState([]);
   const [booksLoading, getBooks, booksError] = useFetch(async () => {
@@ -39,13 +35,22 @@ function Books() {
     setBooks(response);
   });
 
-  useEffect(() => {
-    getBooks();
-    hder.current.textContent =
+  const typeSearch = useMemo(
+    () =>
       filter.search.length > 0
         ? `Книги по запросу «${filter.search}»`
-        : "Книги";
+        : "Книги",
+    [filter.search]
+  );
+
+  useEffect(() => {
+    getBooks();
+    hder.current.textContent = typeSearch;
   }, [debounceFilter, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debounceFilter]);
 
   return (
     <div className="books container">

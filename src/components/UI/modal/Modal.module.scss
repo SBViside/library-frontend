@@ -9,6 +9,7 @@
 }
 
 .mainContent {
+  border-radius: 10px;
   display: inline-block;
   max-width: 90%;
   max-height: 90%;
@@ -17,6 +18,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  overflow: hidden;
-  overflow-y: auto;
+  //   overflow: hidden;
+  //   overflow-y: auto;
+
+  & > svg {
+    width: 35px;
+    height: 35px;
+    color: red;
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: white;
+
+    &:hover {
+      color: rgb(255, 75, 75);
+    }
+  }
 }
