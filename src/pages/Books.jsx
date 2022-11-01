@@ -19,7 +19,7 @@ function Books() {
 
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pagesLimit, setPagesLimit] = useState(2);
+  const [pagesLimit, setPagesLimit] = useState(10);
 
   const [books, setBooks] = useState([]);
   const [booksLoading, getBooks, booksError] = useFetch(async () => {

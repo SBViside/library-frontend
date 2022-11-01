@@ -20,7 +20,7 @@ function ProfileCard({ ...props }) {
 
   const [user, setUser] = useState({});
   const [userLoading, getUser, userError] = useFetch(async () => {
-    const response = await axios.get(`/user/info?email=${logined.email}`);
+    const response = await axios.get(`/user/info/${logined.id}`);
     setUser(response.data);
   });
 

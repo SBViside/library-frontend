@@ -22,7 +22,12 @@ function LoginTab({ loginInputs, setLoginInputs, setLogined, ...props }) {
       return;
     }
 
-    const user = { email: loginInputs.email, admin: response.data.admin };
+    const user = {
+      id: response.data.id,
+      email: loginInputs.email,
+      admin: response.data.admin,
+    };
+
     // DOM
     const remember = document.getElementById("remember").checked;
     if (remember) localStorage.setItem("user", JSON.stringify(user));

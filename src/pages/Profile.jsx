@@ -1,5 +1,6 @@
 import ProfileCard from "../components/ProfileCard";
 import { useEffect } from "react";
+import OrdersCard from "../components/OrdersCard";
 
 function Profile() {
   useEffect(() => {
@@ -9,6 +10,7 @@ function Profile() {
   return (
     <div className="profile container">
       <ProfileCard />
+      <OrdersCard />
     </div>
   );
 }

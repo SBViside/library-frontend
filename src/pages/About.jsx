@@ -1,5 +1,5 @@
-import ProfileCard from "../components/ProfileCard";
 import { useEffect } from "react";
+import OrdersCard from "../components/OrdersCard";
 
 function About() {
   useEffect(() => {
@@ -22,7 +22,7 @@ function About() {
         aspernatur quam laboriosam rem enim corrupti error fugit sint earum
         amet, sapiente temporibus ullam veniam nisi tempore.
       </p>
-      <ProfileCard />
+      <OrdersCard />
     </div>
   );
 }
