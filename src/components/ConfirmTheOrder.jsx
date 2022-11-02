@@ -10,9 +10,12 @@ function ConfirmTheOrder({ book_id, ...props }) {
   const navigator = useNavigate();
 
   const makeOrder = () => {
-    OrderController.createOrder(book_id, logined.email).then((result) => {
-      //   console.log(result);
-      navigator("/profile");
+    OrderController.createOrder(book_id, logined.id).then((result) => {
+      if (result.data !== "limit") {
+        navigator("/profile");
+        return;
+      }
+      alert("Нельзя заказать больше 3 книг.");
     });
   };
 

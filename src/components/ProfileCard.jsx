@@ -10,6 +10,7 @@ import useFetch from "../hooks/useFetch";
 import Loader from "./UI/loader/Loader";
 import { loginContext } from "../context/loginContext";
 import ChangePassword from "./ChangePassword";
+import { getDateFromSQLString } from "../utils/utils";
 
 function ProfileCard({ ...props }) {
   const navigator = useNavigate();
@@ -97,7 +98,8 @@ function ProfileCard({ ...props }) {
             </div>
             <div className="number">
               На сайте с{" "}
-              {user.registration_date && user.registration_date.slice(0, 10)}
+              {user.registration_date &&
+                getDateFromSQLString(user.registration_date.slice(0, 10))}
             </div>
           </div>
         </>

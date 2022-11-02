@@ -22,7 +22,7 @@
   background: rgb(210, 210, 210);
   background: linear-gradient(
     340deg,
-    rgb(228, 228, 228) 0%,
+    rgb(241, 241, 241) 0%,
     rgb(245, 245, 245) 90%
   );
   box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.4);
@@ -141,11 +141,6 @@
 
   .orders__content {
     margin-bottom: 20px;
-    // padding: 20px;
-    // padding-top: 40px;
-    // background-color: rgb(238, 238, 238);
-    // box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3),
-    // 1px 1px 5px rgba(255, 255, 255, 1);
     border-radius: 5px;
     display: flex;
     flex-wrap: wrap;
@@ -165,11 +160,32 @@
       cursor: pointer;
       position: relative;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+
+      .line {
+        width: 30%;
+        border-radius: 0 0 5px 5px;
+        height: 5px;
+        background-color: $orange;
+        position: absolute;
+        top: 0;
+        transition: all 0.2s ease-out;
+      }
 
       .status {
         margin: 10px 0;
         font-weight: 700;
         font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
       }
 
       button {
@@ -194,10 +210,22 @@
       }
 
       &:hover {
-        transform: translateY(-15px);
+        // transform: translateY(-15px);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.4);
+
+        .line {
+          width: 100%;
+          border-radius: 0;
+        }
       }
     }
+  }
+
+  .nothing {
+    margin: 50px 0;
+    text-align: center;
+    font-size: 30px;
+    color: $lightgray;
   }
 }
 

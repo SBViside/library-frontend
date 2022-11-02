@@ -7,7 +7,6 @@ import { MdOutlineLibraryAdd, MdOutlineZoomOutMap } from "react-icons/md";
 import Modal from "../components/UI/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import OrdersCard from "../components/OrdersCard";
-
 import ConfirmTheOrder from "../components/ConfirmTheOrder";
 
 function BookID() {
@@ -29,7 +28,7 @@ function BookID() {
   useEffect(() => {
     window.scrollTo(0, 0);
     getBook();
-  }, []);
+  }, [id]);
 
   return (
     <div className="bookID container">
@@ -106,7 +105,7 @@ function BookID() {
               <ConfirmTheOrder book_id={id} />
             </Modal>
           </div>
-          <OrdersCard />
+          <OrdersCard rerender={() => this.render()} />
         </>
       )}
     </div>
