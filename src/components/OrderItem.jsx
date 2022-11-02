@@ -36,7 +36,7 @@ function OrderItem({ order, cancelTheOrder, ...props }) {
       onClick={() => navigator(`/books/${order.book_id}`)}
     >
       <h1>{order.title}</h1>
-      <img src={order.url} alt="ERROR" width={100} />
+      <img src={order.url} alt="ERROR" width={80} />
       <p>
         Дата оформления: {getDateFromSQLString(order.start_date.slice(0, 10))}
       </p>

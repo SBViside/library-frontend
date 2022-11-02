@@ -18,15 +18,6 @@ function OrdersCard({ rerender }) {
     getOrders();
   }, []);
 
-  if (!ordersLoading && !orders.length)
-    return (
-      <div className="orders">
-        <hr />
-        <h1 className="nothing">У вас пока нет заказов</h1>
-        <hr />
-      </div>
-    );
-
   const cancelTheOrder = (order) => {
     if (window.confirm("Отменить заказ?"))
       axios
@@ -36,6 +27,24 @@ function OrdersCard({ rerender }) {
           if (result.data === "done") getOrders();
         });
   };
+
+  if (!logined.email)
+    return (
+      <div className="orders">
+        <hr />
+        <h1 className="nothing">Вы не вошли в аккаунт</h1>
+        <hr />
+      </div>
+    );
+
+  if (!ordersLoading && !orders.length)
+    return (
+      <div className="orders">
+        <hr />
+        <h1 className="nothing">У вас пока нет заказов</h1>
+        <hr />
+      </div>
+    );
 
   return ordersLoading ? (
     <h1></h1>

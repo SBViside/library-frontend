@@ -2,6 +2,9 @@ import "../styles/Admin.scss";
 import { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
+import BookTable from "../components/admin/BookTable";
+import OrderTable from "../components/admin/OrderTable";
+import Table from "../components/admin/Table";
 
 function Admin() {
   useEffect(() => {
@@ -9,35 +12,32 @@ function Admin() {
   }, []);
 
   const [tables, setTables] = useState([
-    { id: 1, name: "заказы" },
-    { id: 2, name: "книги" },
-    { id: 3, name: "авторы" },
-    { id: 4, name: "жанры" },
-    { id: 5, name: "пользователи" },
+    { id: 1, name: "заказы", url: "/admin/orders/1234", element: OrderTable },
+    { id: 2, name: "книги", url: "/admin/books/1234", element: BookTable },
+    {
+      id: 3,
+      name: "!!!авторы",
+      url: "/admin/authors/1234",
+      element: BookTable,
+    },
+    {
+      id: 4,
+      name: "!!!жанры",
+      url: "/admin/genres/1234",
+      element: BookTable,
+    },
+    {
+      id: 5,
+      name: "!!!пользователи",
+      url: "/admin/users/1234",
+      element: BookTable,
+    },
   ]);
-  const [index, setIndex] = useState(tables[0].id);
+  const [index, setIndex] = useState(1);
   const [database, setDatabase] = useState([]);
 
   const [dbLoading, getDatabase, dbError] = useFetch(async () => {
-    let url = "";
-
-    switch (index) {
-      case 1:
-        url = "/admin/orders/1234";
-        break;
-      case 2:
-        url = "/admin/books/1234";
-        break;
-      case 3:
-        url = "/admin/authors/1234";
-        break;
-      case 4:
-        url = "/admin/genres/1234";
-        break;
-      case 5:
-        url = "/admin/users/1234";
-    }
-    const response = await axios.get(url);
+    const response = await axios.get(tables[index].url);
     setDatabase(response.data);
   });
 
@@ -56,13 +56,14 @@ function Admin() {
                 type="radio"
                 name="table"
                 id={t.name}
-                checked={t.id === index}
-                onChange={(e) => setIndex(t.id)}
+                checked={t.id === index + 1}
+                onChange={(e) => setIndex(t.id - 1)}
               />
               <label htmlFor={t.name}>{t.name}</label>
             </div>
           ))}
         </div>
+        <Table Component={tables[index].element} table={database} />
       </div>
     </div>
   );
