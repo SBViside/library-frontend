@@ -110,6 +110,58 @@
   }
 }
 
+.createBook {
+  padding: 10px;
+
+  .hder {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .addBook__content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .addBook__item {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px;
+
+      #year,
+      #pages,
+      #amount {
+        width: 100px;
+      }
+    }
+    #desc {
+      padding: 5px;
+      min-width: 235px;
+      max-width: 100%;
+      min-height: 50px;
+      max-height: 200px;
+      border: 2px solid $gray;
+      background-color: white;
+
+      &:focus {
+        outline: none;
+        border-color: $orange;
+      }
+    }
+    #confirm {
+      background-color: white;
+      border: 2px solid green;
+      color: green;
+
+      &:active {
+        background-color: rgb(197, 255, 197);
+      }
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .admin__tabs {
     flex-direction: column;

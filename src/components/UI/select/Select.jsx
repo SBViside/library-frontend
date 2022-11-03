@@ -37,12 +37,12 @@ const CustomSelect = forwardRef((props, ref) => {
   return (
     <Select
       ref={ref}
-      {...props}
       className="select"
       styles={myStyles}
       noOptionsMessage={() => "Доступных жанров нет"}
       //   isSearchable={false}
       maxMenuHeight={210}
+      {...props}
     />
   );
 });

@@ -25,9 +25,9 @@
     rgb(241, 241, 241) 0%,
     rgb(245, 245, 245) 90%
   );
-  box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.4);
+  //   box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.4);
 
-  border-radius: 10px;
+  border-radius: 7px;
   display: flex;
   gap: 20px;
   transition: all 0.3s ease-out;
@@ -163,11 +163,16 @@
       border-radius: 5px;
       overflow: hidden;
 
+      h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
       .line {
         width: 30%;
         border-radius: 0 0 5px 5px;
         height: 5px;
-        background-color: $orange;
+        background-color: $lightgray;
         position: absolute;
         top: 0;
         transition: all 0.2s ease-out;
@@ -215,6 +220,7 @@
 
         .line {
           width: 100%;
+          background-color: $orange;
           border-radius: 0;
         }
       }

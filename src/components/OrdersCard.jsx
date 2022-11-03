@@ -4,14 +4,13 @@ import axios from "axios";
 import { loginContext } from "../context/loginContext";
 import OrderItem from "./OrderItem";
 
-function OrdersCard({ rerender }) {
+function OrdersCard(props) {
   const { logined } = useContext(loginContext);
 
   const [orders, setOrders] = useState([]);
   const [ordersLoading, getOrders, ordersError] = useFetch(async () => {
     const response = await axios.get(`/user/orders/${logined.id}`);
     setOrders(response.data);
-    // console.log(response.data);
   });
 
   useEffect(() => {
@@ -23,7 +22,6 @@ function OrdersCard({ rerender }) {
       axios
         .post("/order/cancel", { orderID: order.id, bookID: order.book_id })
         .then((result) => {
-          //   console.log(result);
           if (result.data === "done") getOrders();
         });
   };
