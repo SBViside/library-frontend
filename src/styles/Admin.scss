@@ -61,10 +61,18 @@
   }
 
   .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
     button {
-      background-color: rgb(45, 158, 45);
       color: white;
-      float: right;
+    }
+    #add {
+      background-color: rgb(45, 158, 45);
+    }
+    #refresh {
+      background-color: rgb(37, 134, 245);
     }
   }
 

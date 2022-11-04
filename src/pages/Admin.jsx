@@ -70,7 +70,7 @@ function Admin() {
           <Table
             Component={tables[index].element}
             table={database}
-            setTable={getDatabase}
+            updateTable={getDatabase}
           />
         )}
       </div>

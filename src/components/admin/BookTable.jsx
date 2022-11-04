@@ -1,12 +1,13 @@
 import { shortenAuthorName } from "../../utils/utils";
 import { ImBin } from "react-icons/im";
 import { MdAdd } from "react-icons/md";
+import { HiOutlineRefresh } from "react-icons/hi";
 import axios from "axios";
 import Modal from "../UI/modal/Modal";
 import { useState } from "react";
 import CreateBook from "./createModals/CreateBook";
 
-function BookTable({ table, setTable, ...props }) {
+function BookTable({ table, updateTable, ...props }) {
   const [addModal, setAddModal] = useState(false);
 
   const deleteBook = (id) => {
@@ -19,7 +20,7 @@ function BookTable({ table, setTable, ...props }) {
     }).then((result) => {
       if (result.data === "ok") {
         console.log(`Книга под номером ${id} удалена`);
-        setTable();
+        updateTable();
       }
     });
   };
@@ -29,9 +30,13 @@ function BookTable({ table, setTable, ...props }) {
   return (
     <div className="admin__bookTable">
       <div className="buttons">
-        <button onClick={() => setAddModal(true)}>
+        <button id="add" onClick={() => setAddModal(true)}>
           <MdAdd />
           Добавить
+        </button>
+        <button id="refresh" onClick={() => updateTable()}>
+          <HiOutlineRefresh />
+          Обновить
         </button>
       </div>
       {table.map((row) => (

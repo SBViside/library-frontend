@@ -1,14 +1,50 @@
 import CustomSelect from "../../UI/select/Select";
 import Input from "../../UI/input/Input";
-import DragAndDrop from "../../../hooks/DragAndDrop";
+import DragAndDrop from "../DragAndDrop";
 import { useState } from "react";
+import { CURR_YEAR } from "../../../utils/variables";
+import { useEffect } from "react";
+import axios from "axios";
+import useFetch from "../../../hooks/useFetch";
 
 function CreateBook({ setModal, ...props }) {
   const [image, setImage] = useState(null);
-  const [newBook, setNewBook] = useState({ file: null, title: "" });
+  const [newBook, setNewBook] = useState({
+    title: "",
+    author_id: null,
+    year: CURR_YEAR,
+    desc: "",
+    genres_id: [],
+    pages: "300",
+    amount: "10",
+  });
+
+  const [authors, setAuthors] = useState([]);
+  const [genres, setGenres] = useState([]);
+
+  const [selectsLoading, setSelects, selectsError] = useFetch(async () => {
+    const authors = await axios.get("/db/authors/list");
+    const genres = await axios.get("/db/genres");
+    setAuthors(authors.data);
+    setGenres(genres.data);
+  });
+
+  useEffect(() => {
+    setSelects();
+  }, []);
 
   const sendBook = (e) => {
-    console.log("NOT YET!");
+    const formData = new FormData();
+
+    formData.append("image", image);
+    for (let key in newBook) {
+      formData.append(key, newBook[key]);
+    }
+
+    axios.post("/admin/books/create/1234", formData).then((result) => {
+      console.log(result);
+    });
+
     setModal(false);
   };
 
@@ -19,20 +55,21 @@ function CreateBook({ setModal, ...props }) {
         <DragAndDrop file={image} setFile={setImage} />
 
         <div className="addBook__item">
-          <span>Название:</span> <Input id="title" type="text" />
+          <span>Название:</span>{" "}
+          <Input
+            id="title"
+            onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
+            value={newBook.title}
+            type="text"
+          />
         </div>
 
         <CustomSelect
-          //   ref={genreSelect}
-          //   placeholder={genresLoading ? "Загрузка..." : "Автор"}
-          //   options={
-          //     genresLoading
-          //       ? []
-          //       : genres.map((g) => ({ value: g.id, label: g.name }))
-          //   }
-          //   onChange={(e) => {
-          //     setFilter({ ...filter, genres: e.map((i) => i.value) });
-          //   }}
+          placeholder={selectsLoading ? "Загрузка..." : "Автор"}
+          options={authors.map((g) => ({ value: g.id, label: g.name }))}
+          onChange={(e) => {
+            setNewBook({ ...newBook, author_id: e.value });
+          }}
           noOptionsMessage={() => "Доступных авторов нет"}
         />
 
@@ -42,23 +79,26 @@ function CreateBook({ setModal, ...props }) {
             id="year"
             type="number"
             min="1"
-            max={new Date().getFullYear()}
+            max={CURR_YEAR}
+            onChange={(e) => setNewBook({ ...newBook, year: e.target.value })}
+            value={newBook.year}
           />
         </div>
 
-        <textarea id="desc" placeholder="Краткое описание книги"></textarea>
+        <textarea
+          id="desc"
+          placeholder="Краткое описание книги"
+          onChange={(e) => setNewBook({ ...newBook, desc: e.target.value })}
+          value={newBook.desc}
+        ></textarea>
 
         <CustomSelect
-          //   ref={genreSelect}
-          //   placeholder={genresLoading ? "Загрузка..." : "Автор"}
-          //   options={
-          //     genresLoading
-          //       ? []
-          //       : genres.map((g) => ({ value: g.id, label: g.name }))
-          //   }
-          //   onChange={(e) => {
-          //     setFilter({ ...filter, genres: e.map((i) => i.value) });
-          //   }}
+          isMulti
+          placeholder={selectsLoading ? "Загрузка..." : "Жанры"}
+          options={genres.map((g) => ({ value: g.id, label: g.name }))}
+          onChange={(e) => {
+            setNewBook({ ...newBook, genres_id: e.map((i) => i.value) });
+          }}
           noOptionsMessage={() => "Доступных жанров нет"}
         />
 
@@ -68,7 +108,9 @@ function CreateBook({ setModal, ...props }) {
             id="pages"
             type="number"
             min="1"
-            max={new Date().getFullYear()}
+            max={2000}
+            onChange={(e) => setNewBook({ ...newBook, pages: e.target.value })}
+            value={newBook.pages}
           />
         </div>
 
@@ -78,7 +120,9 @@ function CreateBook({ setModal, ...props }) {
             id="amount"
             type="number"
             min="1"
-            max={new Date().getFullYear()}
+            max={1000}
+            onChange={(e) => setNewBook({ ...newBook, amount: e.target.value })}
+            value={newBook.amount}
           />
         </div>
 

@@ -2,6 +2,7 @@ import Button from "./UI/button/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
+import colors from "../styles/variables.module.scss";
 
 function BookItem({ book, logined, ...props }) {
   const navigator = useNavigate();
@@ -59,7 +60,14 @@ function BookItem({ book, logined, ...props }) {
           Подробнее
         </Button>
       </div>
-      <div className="book__underline"></div>
+      <div
+        className="book__underline"
+        style={{
+          backgroundColor: book.avalible_amount
+            ? colors.orange
+            : colors.lightgray,
+        }}
+      ></div>
     </div>
   );
 }
