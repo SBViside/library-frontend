@@ -12,7 +12,7 @@ function Status({ order }) {
   } else if (order.actual_date) {
     return (
       <p className="status" style={{ color: "green" }}>
-        Возвращена({getDateFromSQLString(order.actual_date.slice(0, 10))})
+        Возвращена ({getDateFromSQLString(order.actual_date.slice(0, 10))})
       </p>
     );
   } else {

@@ -10,10 +10,6 @@ import { CLEAR_FILTER } from "../utils/variables";
 import BookController from "../controller/BookController";
 
 function BooksID() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { id } = useParams();
 
   const [author, setAuthor] = useState("Загрузка...");
@@ -50,6 +46,10 @@ function BooksID() {
   useEffect(() => {
     setCurrentPage(1);
   }, [debounceFilter]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   return (
     <div className="books container">

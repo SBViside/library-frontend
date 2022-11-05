@@ -100,6 +100,7 @@ function CreateBook({ setModal, ...props }) {
             setNewBook({ ...newBook, genres_id: e.map((i) => i.value) });
           }}
           noOptionsMessage={() => "Доступных жанров нет"}
+          maxMenuHeight={160}
         />
 
         <div className="addBook__item">

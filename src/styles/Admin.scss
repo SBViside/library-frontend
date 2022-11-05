@@ -63,6 +63,7 @@
   .buttons {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
     gap: 10px;
 
     button {
@@ -120,6 +121,9 @@
 
 .createBook {
   padding: 10px;
+  max-height: 700px;
+  max-width: 500px;
+  overflow-y: auto;
 
   .hder {
     font-size: 20px;
@@ -189,5 +193,10 @@
         align-items: start !important;
       }
     }
+  }
+}
+@media (max-height: 700px) {
+  .createBook {
+    max-height: 600px !important;
   }
 }

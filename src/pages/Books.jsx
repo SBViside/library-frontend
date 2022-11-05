@@ -9,10 +9,6 @@ import { CLEAR_FILTER } from "../utils/variables";
 import BookController from "../controller/BookController";
 
 function Books() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const hder = useRef();
   const [filter, setFilter] = useState(structuredClone(CLEAR_FILTER));
   const debounceFilter = useDebounce(filter, 1000);
@@ -51,6 +47,10 @@ function Books() {
   useEffect(() => {
     setCurrentPage(1);
   }, [debounceFilter]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   return (
     <div className="books container">

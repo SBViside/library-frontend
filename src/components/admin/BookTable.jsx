@@ -4,11 +4,14 @@ import { MdAdd } from "react-icons/md";
 import { HiOutlineRefresh } from "react-icons/hi";
 import axios from "axios";
 import Modal from "../UI/modal/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CreateBook from "./createModals/CreateBook";
+import useDebounce from "../../hooks/useDebounce";
 
 function BookTable({ table, updateTable, ...props }) {
   const [addModal, setAddModal] = useState(false);
+  const [search, setSeach] = useState("");
+  const debounceValue = useDebounce(search, 1000);
 
   const deleteBook = (id) => {
     if (!window.confirm("Удалить книгу из базы данных?")) return;
@@ -25,11 +28,22 @@ function BookTable({ table, updateTable, ...props }) {
     });
   };
 
+  //   useEffect(() => {
+  //     updateTable(search);
+  //   }, [debounceValue]);
+
   if (!table.length) return <h1>Нет данных</h1>;
 
   return (
     <div className="admin__bookTable">
       <div className="buttons">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSeach(e.target.value)}
+          style={{ display: "block" }}
+          placeholder="Поиск"
+        />
         <button id="add" onClick={() => setAddModal(true)}>
           <MdAdd />
           Добавить
