@@ -8,6 +8,44 @@
 
   .admin__content {
     user-select: none;
+
+    .controlls {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      #add {
+        background-color: rgb(45, 158, 45);
+      }
+      #refresh {
+        background-color: rgb(37, 134, 245);
+      }
+    }
+
+    .admin-table {
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      button {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        font-weight: 700;
+        border: none;
+        border-radius: 2px;
+        color: white;
+
+        &:active {
+          opacity: 0.7;
+        }
+      }
+    }
+
     .admin__tabs {
       padding: 20px;
       padding-bottom: 10px;
@@ -40,43 +78,6 @@
 }
 
 .admin__bookTable {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  button {
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    font-weight: 700;
-    border: none;
-    border-radius: 2px;
-
-    &:active {
-      opacity: 0.7;
-    }
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 10px;
-
-    button {
-      color: white;
-    }
-    #add {
-      background-color: rgb(45, 158, 45);
-    }
-    #refresh {
-      background-color: rgb(37, 134, 245);
-    }
-  }
-
   .table__row {
     padding: 5px;
     background-color: rgb(240, 240, 240);
@@ -114,6 +115,42 @@
         float: right;
         color: white;
         background-color: rgb(255, 73, 73);
+      }
+    }
+  }
+}
+
+.admin__orderTable {
+  .table__row {
+    padding: 5px;
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    .row__content {
+      display: flex;
+      justify-content: space-between;
+
+      .order__info {
+        .order__title {
+          font-weight: 400;
+        }
+
+        .order__customer {
+          font-size: 20px;
+        }
+
+        .order__status {
+          font-weight: 700;
+          font-size: 20px;
+          color: rgb(61, 61, 61);
+          font-style: italic;
+          margin-top: 20px;
+        }
+      }
+
+      .order__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
       }
     }
   }
@@ -191,6 +228,15 @@
       .row__content {
         flex-direction: column;
         align-items: start !important;
+      }
+    }
+  }
+  .admin__orderTable {
+    .row__content {
+      flex-direction: column;
+      .order__buttons {
+        margin-top: 20px;
+        flex-grow: 1 !important;
       }
     }
   }

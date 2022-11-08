@@ -3,11 +3,10 @@ import './styles/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { loginContext } from './context/loginContext';
 // ROUTES
 import { publicRoutes, privateRoutes, adminRoutes } from './routes/routes';
 import { publicNavigator, privateNavigator, adminNavigator } from './routes/headerRoutes';
-// CONTEXT
-import { loginContext } from './context/loginContext';
 
 function App() {
     // login check 

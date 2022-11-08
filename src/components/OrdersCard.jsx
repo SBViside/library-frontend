@@ -44,16 +44,16 @@ function OrdersCard(props) {
       </div>
     );
 
-  return ordersLoading ? (
-    <h1></h1>
-  ) : (
+  return (
     <div className="orders">
       <hr />
       <h1 className="caption">Список ваших заказов</h1>
       <div className="orders__content">
-        {orders.map((o) => (
-          <OrderItem key={o.id} order={o} cancelTheOrder={cancelTheOrder} />
-        ))}
+        {ordersLoading
+          ? null
+          : orders.map((o) => (
+              <OrderItem key={o.id} order={o} cancelTheOrder={cancelTheOrder} />
+            ))}
       </div>
       <hr />
     </div>

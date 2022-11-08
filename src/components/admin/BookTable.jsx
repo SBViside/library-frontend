@@ -6,12 +6,11 @@ import axios from "axios";
 import Modal from "../UI/modal/Modal";
 import { useState, useEffect } from "react";
 import CreateBook from "./createModals/CreateBook";
-import useDebounce from "../../hooks/useDebounce";
+import Loader from "../UI/loader/Loader";
 
-function BookTable({ table, updateTable, ...props }) {
+function BookTable({ table, updateTable, search, loading, ...props }) {
   const [addModal, setAddModal] = useState(false);
-  const [search, setSeach] = useState("");
-  const debounceValue = useDebounce(search, 1000);
+  const [bookSearch, setBookSearch] = search;
 
   const deleteBook = (id) => {
     if (!window.confirm("Удалить книгу из базы данных?")) return;
@@ -28,19 +27,13 @@ function BookTable({ table, updateTable, ...props }) {
     });
   };
 
-  //   useEffect(() => {
-  //     updateTable(search);
-  //   }, [debounceValue]);
-
-  if (!table.length) return <h1>Нет данных</h1>;
-
   return (
-    <div className="admin__bookTable">
-      <div className="buttons">
+    <div className="admin__bookTable admin-table">
+      <div className="controlls">
         <input
-          type="text"
-          value={search}
-          onChange={(e) => setSeach(e.target.value)}
+          type="search"
+          value={bookSearch}
+          onChange={(e) => setBookSearch(e.target.value)}
           style={{ display: "block" }}
           placeholder="Поиск"
         />
@@ -53,44 +46,51 @@ function BookTable({ table, updateTable, ...props }) {
           Обновить
         </button>
       </div>
-      {table.map((row) => (
-        <div key={row.id} className="table__row">
-          <div className="row__content">
-            <div className="title">
-              {row.id}. {row.title}
-              <img src={row.url} alt="ERROR" width={50} />
+      {loading ? (
+        <Loader />
+      ) : table.length ? (
+        table.map((row) => (
+          <div key={row.id} className="table__row">
+            <div className="row__content">
+              <div className="title">
+                {row.id}. {row.title}
+                <img src={row.url} alt="ERROR" width={50} />
+              </div>
+              <div className="info">
+                <p>
+                  Автор:{" "}
+                  <span>{row.author && shortenAuthorName(row.author)}</span>
+                </p>
+                <p>
+                  Год издания: <span>{row.release_year}</span>
+                </p>
+                <p>
+                  Страниц: <span>{row.pages}</span>
+                </p>
+              </div>
+              <div className="info" style={{ flexGrow: "0", width: "150px" }}>
+                <p>
+                  Всего: <span>{row.amount}</span>
+                </p>
+                <p>
+                  Доступно: <span>{row.avalible_amount}</span>
+                </p>
+                <p>
+                  Заказов: <span>{row.total_orders}</span>
+                </p>
+              </div>
             </div>
-            <div className="info">
-              <p>
-                Автор: <span>{shortenAuthorName(row.author)}</span>
-              </p>
-              <p>
-                Год издания: <span>{row.release_year}</span>
-              </p>
-              <p>
-                Страниц: <span>{row.pages}</span>
-              </p>
-            </div>
-            <div className="info" style={{ flexGrow: "0", width: "150px" }}>
-              <p>
-                Всего: <span>{row.amount}</span>
-              </p>
-              <p>
-                Доступно: <span>{row.avalible_amount}</span>
-              </p>
-              <p>
-                Заказов: <span>{row.total_orders}</span>
-              </p>
+            <div className="buttons">
+              <button onClick={() => deleteBook(row.id)}>
+                <ImBin />
+                Удалить
+              </button>
             </div>
           </div>
-          <div className="buttons">
-            <button onClick={() => deleteBook(row.id)}>
-              <ImBin />
-              Удалить
-            </button>
-          </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <h1>Нет данных</h1>
+      )}
       <Modal modal={addModal} setModal={setAddModal}>
         <CreateBook setModal={setAddModal} />
       </Modal>

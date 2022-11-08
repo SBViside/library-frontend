@@ -50,7 +50,7 @@ function CreateBook({ setModal, ...props }) {
 
   return (
     <div className="createBook" {...props}>
-      <h1 className="hder">Добавление книги</h1>
+      <h1 className="hder">Добавить книгу</h1>
       <div className="addBook__content">
         <DragAndDrop file={image} setFile={setImage} />
 
