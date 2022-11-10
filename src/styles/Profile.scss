@@ -134,17 +134,13 @@
   }
 
   .orders__content {
-    height: 220px;
-    max-height: 220px;
-    overflow-y: auto;
-    padding: 10px;
+    height: 440px;
+    max-height: 440px;
+    overflow-y: scroll;
+    padding: 0 20px;
     margin-bottom: 20px;
     border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     position: relative;
-    justify-content: center;
     background: linear-gradient(
       340deg,
       rgb(241, 241, 241) 0%,
@@ -152,24 +148,29 @@
     );
 
     .orders__item {
-      //   height: 200px;
       padding: 10px;
-      padding-bottom: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
+      margin: 20px 0;
       transition: all 0.2s ease-out;
       background-color: white;
-      cursor: pointer;
       position: relative;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
       overflow: hidden;
 
+      &.completed::before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
+
       h1 {
         font-size: 22px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
 
       .line {
@@ -179,6 +180,7 @@
         background-color: $lightgray;
         position: absolute;
         top: 0;
+        left: 0;
         transition: all 0.2s ease-out;
       }
 
@@ -187,9 +189,25 @@
         font-weight: 700;
         font-size: 20px;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         gap: 7px;
+
+        .ready {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 65px;
+          height: 65px;
+          color: #3cb371;
+        }
+
+        .client {
+          * {
+            stroke: brown;
+          }
+        }
 
         svg {
           width: 20px;
@@ -203,9 +221,6 @@
         border: none;
         background-color: rgb(255, 75, 75);
         color: white;
-        position: absolute;
-        bottom: 0;
-        left: 0;
         cursor: pointer;
         transition: all 0.2s ease-out;
         &:hover {
@@ -224,7 +239,7 @@
 
         .line {
           width: 100%;
-          background-color: $orange;
+          //   background-color: green;
           border-radius: 0;
         }
       }

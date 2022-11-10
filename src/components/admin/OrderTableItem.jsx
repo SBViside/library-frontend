@@ -46,7 +46,13 @@ function OrderTableItem({
             {row.id}. {row.customer}
           </h2>
           <h1 className="order__title">Книга: {row.title}</h1>
-
+          <p>
+            Период проката:{" "}
+            <span style={{ fontStyle: "italic", fontWeight: "700" }}>
+              {getDateFromSQLString(row.start_date.slice(0, 10))}-
+              {getDateFromSQLString(row.expected_date.slice(0, 10))}
+            </span>
+          </p>
           <Status order={row} />
         </div>
         <div className="order__buttons">
