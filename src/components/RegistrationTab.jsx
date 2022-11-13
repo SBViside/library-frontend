@@ -53,16 +53,17 @@ function RegistrationTab({
     return false;
   };
   const checkEmail = () => {
+    alert("Введен неверный E-Mail");
     return EMAIL_REGEXP.test(registrationInputs.email);
   };
 
   const setEmail = (e) => {
-    if (checkEmail()) e.target.style.borderColor = "green";
-    else e.target.style.borderColor = "red";
     setRegistrationInputs({
       ...registrationInputs,
       email: e.target.value,
     });
+    if (EMAIL_REGEXP.test(e.target.value)) e.target.style.borderColor = "green";
+    else e.target.style.borderColor = "red";
   };
 
   return (

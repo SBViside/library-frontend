@@ -10,18 +10,7 @@ const CLEAR_FILTER = {
     inStock: false,
 };
 
-// CREATE BOOK
-// const CREATE_BOOK = {
-//     title: "",
-//     author_id: null,
-//     year: CURR_YEAR,
-//     desc: "",
-//     genres_id: [],
-//     pages: "300",
-//     amount: "10",
-// };
-
 // REGEXP
-const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+const EMAIL_REGEXP = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
 export { CURR_YEAR, CLEAR_FILTER, EMAIL_REGEXP };
