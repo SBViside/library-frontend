@@ -14,16 +14,30 @@
   }
 }
 
+%profileLines {
+  content: "";
+  position: absolute;
+  //   width: 30%;
+  //   height: 5px;
+
+  width: 150px;
+  height: 150px;
+  transform: rotate(45deg);
+
+  background-color: $orange;
+  transition: all 0.4s ease-out;
+}
+
 .profile__info {
   padding: 20px;
   padding-bottom: 35px;
   position: relative;
-  border-top: 5px solid $lightgray;
-  border-bottom: 5px solid $lightgray;
+  //   border-top: 5px solid $lightgray;
+  //   border-bottom: 5px solid $lightgray;
   background: linear-gradient(
     340deg,
-    rgb(241, 241, 241) 0%,
-    rgb(245, 245, 245) 90%
+    rgb(245, 245, 245) 0%,
+    rgb(249, 249, 249) 90%
   );
   //   box-shadow: 0 20px 16px -16px rgba(0, 0, 0, 0.4);
 
@@ -31,6 +45,18 @@
   gap: 20px;
   transition: all 0.3s ease-out;
   overflow: hidden;
+
+  &:before {
+    @extend %profileLines;
+    top: -100px;
+    left: -100px;
+  }
+
+  &:after {
+    @extend %profileLines;
+    right: -100px;
+    bottom: -100px;
+  }
 
   .image {
     width: 250px;
@@ -134,10 +160,10 @@
   }
 
   .orders__content {
-    height: 440px;
-    max-height: 440px;
+    height: 600px;
+    max-height: 600px;
     overflow-y: scroll;
-    padding: 0 20px;
+    padding: 0 10px;
     margin-bottom: 20px;
     border-radius: 5px;
     position: relative;
@@ -149,12 +175,12 @@
 
     .orders__item {
       padding: 10px;
-      margin: 20px 0;
+      margin: 10px 0;
       transition: all 0.2s ease-out;
       background-color: white;
       position: relative;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
+      //   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.2);
+      //   border-radius: 5px;
       overflow: hidden;
 
       &.completed::before {
@@ -175,17 +201,16 @@
 
       .line {
         width: 30%;
-        border-radius: 0 0 5px 5px;
         height: 5px;
         background-color: $lightgray;
         position: absolute;
         top: 0;
         left: 0;
-        transition: all 0.2s ease-out;
+        transition: all 0.4s ease-out;
       }
 
       .status {
-        margin: 10px 0;
+        margin-top: 5px;
         font-weight: 700;
         font-size: 20px;
         display: flex;
@@ -196,10 +221,10 @@
         .ready {
           position: absolute;
           left: 50%;
-          top: 50%;
+          top: 60%;
           transform: translate(-50%, -50%);
-          width: 65px;
-          height: 65px;
+          width: 45px;
+          height: 45px;
           color: #3cb371;
         }
 
@@ -223,6 +248,7 @@
         color: white;
         cursor: pointer;
         transition: all 0.2s ease-out;
+
         &:hover {
           box-shadow: none;
           background-color: rgb(218, 64, 64);
@@ -235,7 +261,7 @@
 
       &:hover {
         // transform: translateY(-15px);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.4);
+        // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.4);
 
         .line {
           width: 100%;

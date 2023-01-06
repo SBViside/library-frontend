@@ -5,10 +5,115 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Library App</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes ldio-j83dzwoyn08 {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        .ldio-j83dzwoyn08 div {
+            box-sizing: border-box !important
+        }
+
+        .ldio-j83dzwoyn08>div {
+            position: absolute;
+            width: 116px;
+            height: 116px;
+            top: 42px;
+            left: 42px;
+            border-radius: 50%;
+            border: 16px solid #000;
+            border-color: #fd841f transparent #fd841f transparent;
+            animation: ldio-j83dzwoyn08 1s linear infinite;
+        }
+
+        .ldio-j83dzwoyn08>div:nth-child(2) {
+            border-color: transparent
+        }
+
+        .ldio-j83dzwoyn08>div:nth-child(2) div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(45deg);
+        }
+
+        .ldio-j83dzwoyn08>div:nth-child(2) div:before,
+        .ldio-j83dzwoyn08>div:nth-child(2) div:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: -16px;
+            left: 34px;
+            background: #fd841f;
+            border-radius: 50%;
+            box-shadow: 0 100px 0 0 #fd841f;
+        }
+
+        .ldio-j83dzwoyn08>div:nth-child(2) div:after {
+            left: -16px;
+            top: 34px;
+            box-shadow: 100px 0 0 0 #fd841f;
+        }
+
+        .loadingio-spinner-dual-ring-aeo62zr507m {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100000;
+        }
+
+        .ldio-j83dzwoyn08 {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            backface-visibility: hidden;
+            transform-origin: 0 0;
+        }
+
+        .ldio-j83dzwoyn08 div {
+            box-sizing: content-box;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="loadingio-spinner-dual-ring-aeo62zr507m" id="preloader">
+        <div class="ldio-j83dzwoyn08">
+            <div></div>
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
     <div id="root"></div>
+
+    <script>
+        const preloader = document.getElementById('preloader');
+        window.onload = () => {
+            preloader.style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

@@ -9,10 +9,7 @@ import { publicRoutes, privateRoutes, adminRoutes } from './routes/routes';
 import { publicNavigator, privateNavigator, adminNavigator } from './routes/headerRoutes';
 
 function App() {
-    // login check 
-    // FIX
-    // FIX
-    // FIX
+    // login check (SHOULD FIX)
     const [logined, setLogined] = useState(JSON.parse(localStorage.getItem('user')) || { email: null, admin: false });
     const routes = logined.email ? (logined.admin ? [...privateRoutes, ...adminRoutes] : privateRoutes) : publicRoutes;
     const headerNavigator = logined.email ? (logined.admin ? [...privateNavigator, ...adminNavigator] : privateNavigator) : publicNavigator;
